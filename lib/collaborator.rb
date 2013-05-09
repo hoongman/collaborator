@@ -2,9 +2,9 @@ require 'sinatra/base'
 #this inside the sinatra gem
 require 'mongoid'
 #this refers to the mongoid gem
+
 class Post
   include Mongoid::Document
-
   field :content, type: String
 end
 
@@ -22,11 +22,9 @@ class Collaborator < Sinatra::Base
     erb :post_form
   end
 
-  post '/mock-groupname' do
-    post = Post.create(:content => params['message'])
-    erb :post_id1, locals: { :post => post }
+  post '/mock-groupname' do 
+    erb :post_id1, locals: { :post => Post.create(:content => params['message']) }
   end
-
 
   # start the server if ruby file executed directly
   # really not sure what this is for (Matt)
