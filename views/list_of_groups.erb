@@ -1,6 +1,12 @@
-<h1>List of groups</h1>
-<ul>
-	<% groups.each do |group| %>
-	  <li><%= group.name %></li>
-	<% end %>
-</ul>
+
+<section>
+	<div class="list_header">
+		<h1>List of groups</h1>
+	</div>
+	<ul>
+		<% groups.each do |group| %>
+		  <li><%= group.name %></li>
+		<% end %>
+	</ul>
+	<a href="/group/create">Add another group...</a>
+</section>
