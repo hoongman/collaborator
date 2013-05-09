@@ -1,6 +1,35 @@
-.header{
+.main {
+	width: 50%;
+	margin: 0 auto;
+	text-align: center;
+}
+input {
+	padding: 5px;
+	width: 100%;
+	border: 2px dotted red;
+	text-align: center;
+	font-size: 20px;
+}
+
+button {
+	margin-top: 10px;
+	height: 40px;
+	width: 80px;
 	background-color: blue;
-	border: 1px solid #000;
+	border: 2px solid white;
+	border-radius: 6px;
 	color: #fff;
 
+}
+
+.header{
+	background-color: red;
+	border: 2px solid #000;
+	border-radius: 5px;
+	padding: 5px;
+	color: #fff;
+	text-align: center;
+}
+h1 {
+	text-shadow
 }
