@@ -3,25 +3,18 @@ require 'sinatra/base'
 require 'mongoid'
 #this refers to the mongoid gem
 
-class Post
-  include Mongoid::Document
-  field :content, type: String
-end
-
-class Post
-  include Mongoid::Document
-
-  field :content, type: String
-end
-
 require_relative 'post'
 require_relative 'group'
 
 class Collaborator < Sinatra::Base
   #this class is a controller
   #this is the app too! - because it is inheriting from Sinatra::Base
+
   set :views, File.join(File.dirname(__FILE__), '../views')
   Mongoid.load!(File.join(File.dirname(__FILE__),"mongoid.yml"))
+
+  set :group, Group.create(:group_name => "master_group" )
+
 
   get '/' do
     'Hey there'
@@ -30,21 +23,19 @@ class Collaborator < Sinatra::Base
   get '/mock-groupname' do
     erb :post_form
   end
-
-
   
   get '/list-of-groups' do
     erb :list_of_groups, locals: { :groups => Group.all }
   end
 
-
   post '/mock-groupname' do 
-    erb :post_id1, locals: { :post => Post.create(:content => params['message']) }
+    erb :post_id1, locals: { :post => settings.group.posts.create(:content => params['message'])}
   end
 
-  get '/group-timeline' do
-    erb :group_timeline, locals: { :posts => Post.all }
-  end 
+  get '/groups/:name' do |name|
+    erb :group_timeline, locals: { :group => Group.first(conditions: {group_name: name}) }
+  end
+
 
   # start the server if ruby file executed directly
   # really not sure what this is for (Matt)

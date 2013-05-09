@@ -15,6 +15,22 @@ describe Collaborator do
 
 		get '/list-of-groups'
 	end
+
+it 'sending a request to /' do
+    get '/'
+    
+    last_response.body.should eq 'Hey there'
+end
+
+it 'post a new message' do
+    Post.should_receive(:create).with(content: 'Hello Collaborators!')
+    post '/mock-groupname', {"message"=>"Hello Collaborators!"}
+end
+
+it 'posts new message to a group' do 
+	  Post.should_receive(:create).with(content: 'Hello Collaborators!')
+    post.should_receive(:group_name)
+end
  # tells it to only return the group name on the page we are interested in (list of groups)
 	
 	#context 'creating a new post' do
