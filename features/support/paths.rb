@@ -14,7 +14,8 @@ module NavigationHelpers
       '/'
     when /the post a new message page/
       '/mock-groupname'
-
+    when /list of groups page/
+      '/list-of-groups'
     when /the timeline page/
       '/group-timeline'
 

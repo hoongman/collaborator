@@ -14,6 +14,9 @@ class Post
   field :content, type: String
 end
 
+require_relative 'post'
+require_relative 'group'
+
 class Collaborator < Sinatra::Base
   #this class is a controller
   #this is the app too! - because it is inheriting from Sinatra::Base
@@ -27,6 +30,13 @@ class Collaborator < Sinatra::Base
   get '/mock-groupname' do
     erb :post_form
   end
+
+
+  
+  get '/list-of-groups' do
+    erb :list_of_groups, locals: { :groups => Group.all }
+  end
+
 
   post '/mock-groupname' do 
     erb :post_id1, locals: { :post => Post.create(:content => params['message']) }
