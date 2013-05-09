@@ -8,6 +8,12 @@ class Post
   field :content, type: String
 end
 
+class Post
+  include Mongoid::Document
+
+  field :content, type: String
+end
+
 class Collaborator < Sinatra::Base
   #this class is a controller
   #this is the app too! - because it is inheriting from Sinatra::Base
@@ -25,6 +31,10 @@ class Collaborator < Sinatra::Base
   post '/mock-groupname' do 
     erb :post_id1, locals: { :post => Post.create(:content => params['message']) }
   end
+
+  get '/group-timeline' do
+    erb :group_timeline, locals: { :posts => Post.all }
+  end 
 
   # start the server if ruby file executed directly
   # really not sure what this is for (Matt)
