@@ -21,4 +21,6 @@ Feature: Post a new message
     Given I am on the post a new message page
     When I fill in "message" with "Hey Collaborators!"
     And I press "Post"
-    Then I should see "Your message has been posted"
+    Then I should see "Your message: 'Hey Collaborators!' has been posted"
+
+    #get rid of all the mongo logs in cuke
