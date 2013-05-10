@@ -16,6 +16,7 @@ end
 
 require_relative 'post'
 require_relative 'group'
+require_relative 'user'
 
 class Collaborator < Sinatra::Base
   #this class is a controller
@@ -30,9 +31,12 @@ class Collaborator < Sinatra::Base
   get '/mock-groupname' do
     erb :post_form
   end
-
-
   
+  get '/login' do
+    erb :login_form
+  #check if the key - value pair exists in mongo and if so allow entry
+  end
+ 
   get '/list-of-groups' do
     erb :list_of_groups, locals: { :groups => Group.all }
   end
