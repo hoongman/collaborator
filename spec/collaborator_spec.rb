@@ -10,12 +10,18 @@ describe Collaborator do
 		Collaborator # creates a new instance of Collaborator and makes it available to the tests
 	end
 
+	it 'post a new message' do
+		Post.should_receive(:create).with(content: 'Hello Collaborators!')
+		post '/mock-groupname', {"message"=>"Hello Collaborators!"}
+	end
+
 	it 'returns all the groups in the database' do
 		Group.should_receive(:all)
 
-		get '/list-of-groups'
+		get '/groups'
 	end
 
+<<<<<<< HEAD
 it 'sending a request to /' do
     get '/'
     last_response.body.should eq 'Hey there'
@@ -31,6 +37,13 @@ it 'posts new message to a group' do
 	  Post.should_receive(:create).with(content: 'Hello Collaborators!')
     post.should_receive(:group_name)
 end
+=======
+  it 'creates a new group' do
+    Group.should_receive(:create).with({:name => 'testgroup'})
+    
+    post '/groups', {'add_group' => 'testgroup'}
+  end
+>>>>>>> ecomba/master
  # tells it to only return the group name on the page we are interested in (list of groups)
 	
 	#context 'creating a new post' do
