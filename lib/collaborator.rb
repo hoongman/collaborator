@@ -17,10 +17,6 @@ class Collaborator < Sinatra::Base
   set :views, File.join(File.dirname(__FILE__), '../views')
   Mongoid.load!(File.join(File.dirname(__FILE__),"mongoid.yml"))
 
-  get '/' do
-    'Hey there'
-  end
-
   get '/mock-groupname' do
     erb :post_form
   end
@@ -47,7 +43,7 @@ class Collaborator < Sinatra::Base
   end 
 
   # start the server if ruby file executed directly
-  # really not sure what this is for (Matt)
   run! if app_file == $0
+  # really not sure what this is for (Matt)
 end
 
