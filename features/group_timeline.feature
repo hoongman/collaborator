@@ -19,7 +19,7 @@ Feature: Have a group timeline
       | post content |
       | Hey cohorts  |
       | What's up?   |
-    When I am on the timeline page
+    When I am on the master group timeline page
     Then I should see the following posts:
       | post content |
       | Hey cohorts  |

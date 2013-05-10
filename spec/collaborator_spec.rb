@@ -29,8 +29,8 @@ end
 
 it 'post a new message' do
 		group = Group.first(conditions: {group_name: 'master_group'}) 
-    group.posts.should_receive(:create).with(content: post['Hello Collaborators!'])
-    post '/mock-groupname', {"message"=>'Hello Collaborators!'}
+    Post.should_receive(:create).with(content: post['Hello Collaborators!'])
+    post '/groups', {"message"=>'Hello Collaborators!'}
 end
 
 it 'posts new message to a group' do 
