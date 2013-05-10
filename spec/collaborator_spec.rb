@@ -10,11 +10,22 @@ describe Collaborator do
 		Collaborator # creates a new instance of Collaborator and makes it available to the tests
 	end
 
+	it 'post a new message' do
+		Post.should_receive(:create).with(content: 'Hello Collaborators!')
+		post '/mock-groupname', {"message"=>"Hello Collaborators!"}
+	end
+
 	it 'returns all the groups in the database' do
 		Group.should_receive(:all)
 
-		get '/list-of-groups'
+		get '/groups'
 	end
+
+  it 'creates a new group' do
+    Group.should_receive(:create).with({:name => 'testgroup'})
+    
+    post '/groups', {'add_group' => 'testgroup'}
+  end
  # tells it to only return the group name on the page we are interested in (list of groups)
 	
 	#context 'creating a new post' do

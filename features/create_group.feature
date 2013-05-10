@@ -21,11 +21,11 @@ Feature: Create a group
     | Pandas |
     | April Cohorters |
     When I am on the add a new group page
-    And I fill in "add_group" with "New Group"
+    And I fill in "add_group" with "The April Group"
     And I press "Add Group"
     When I am on the list of groups page
     Then I will see the following groups:
     | group name |
     | Pandas |
     | April Cohorters |
-    | New Group |
+    | The April Group |
