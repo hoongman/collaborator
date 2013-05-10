@@ -6,15 +6,22 @@ require 'rack/test' # rack is a specification close to the TCP/IP protocol. rack
 describe Collaborator do #describing the Collaborator class
   include Rack::Test::Methods  # importing methods to test as if was a web applciation. see the sinatra documentation for info on rack tests.
 
-  def app
-  	Collaborator #this is Sinatra::Application. this is taking the Collaborator class, and making an instance available in the whole rspec env.
-  end
-#this makes the app Collaborator available to the test so can send things to it
+	it 'post a new message' do
+		Post.should_receive(:create).with(content: 'Hello Collaborators!')
+		post '/mock-groupname', {"message"=>"Hello Collaborators!"}
+	end
+
 	it 'returns all the groups in the database' do
 		Group.should_receive(:all)
 
-		get '/list-of-groups'
+		get '/groups'
 	end
+
+  it 'creates a new group' do
+    Group.should_receive(:create).with({:name => 'testgroup'})
+    
+    post '/groups', {'add_group' => 'testgroup'}
+  end
  # tells it to only return the group name on the page we are interested in (list of groups)
 	
 	#context 'creating a new post' do
@@ -25,3 +32,4 @@ describe Collaborator do #describing the Collaborator class
 	#end
 end
 
+end

@@ -2,4 +2,7 @@ development:
    database: collaborator 
    host: localhost
    
+test:
+  database: collaborator_test
+  host: localhost
     

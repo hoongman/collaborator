@@ -17,10 +17,10 @@ Feature: Find a particular username and password combination
 
 	Scenario: Login
 		Given a user exists with the following username and password
-		|username|password| 
-		|Fred    |secret  | 
+		|username|password| salt|  
+		|Fred    |secret  | 123 |
 		When I login with my username and password
-		Then I should be sent to the welcome page
+		Then I should be sent to the "welcome" page
 		But if I enter unmatched or unknown login details
 		Then I should be sent to an unsuccessful login page 
 

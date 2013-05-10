@@ -2,6 +2,6 @@ class Post
 
   include Mongoid::Document
 
-  field :message, type: String
+  field :content, type: String
   
 end
