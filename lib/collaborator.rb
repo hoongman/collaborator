@@ -11,7 +11,7 @@ class Collaborator < Sinatra::Base
   #this is the app too! - because it is inheriting from Sinatra::Base
   set :views, File.join(File.dirname(__FILE__), '../views')
   set :public_folder, File.join(File.dirname(__FILE__), '../public')
-
+ 
   Mongoid.load!(File.join(File.dirname(__FILE__),'mongoid.yml'))
 
   get '/mock-groupname' do
@@ -36,6 +36,7 @@ class Collaborator < Sinatra::Base
   end
 
   get '/groups/:group_name' do |group_name|
+
     erb :group_timeline, locals: { :posts => Post.all }
   end 
 
