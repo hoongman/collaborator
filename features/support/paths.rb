@@ -15,9 +15,11 @@ module NavigationHelpers
     when /the post a new message page/
       '/mock-groupname'
     when /list of groups page/
-      '/list-of-groups'
+      '/groups'
     when /the timeline page/
-      '/group-timeline'
+      '/groups/testgroup'
+    when /add a new group page/
+      '/group/create'
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
