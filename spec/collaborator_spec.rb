@@ -11,8 +11,10 @@ describe Collaborator do
 	end
 
 	it 'post a new message' do
-		Post.should_receive(:create).with(content: 'Hello Collaborators!')
-		post '/mock-groupname', {"message"=>"Hello Collaborators!"}
+		posts = double :posts, :create => ''
+		group = double :group, :posts => posts
+		Group.should_receive(:find_or_create_by).with({group_name: 'master_group'}).and_return(group)
+		post '/mock-groupname', {'message'=>'Hello Collaborators!'}
 	end
 
 	it 'returns all the groups in the database' do
@@ -21,29 +23,11 @@ describe Collaborator do
 		get '/groups'
 	end
 
-<<<<<<< HEAD
-it 'sending a request to /' do
-    get '/'
-    last_response.body.should eq 'Hey there'
-end
-
-it 'post a new message' do
-		group = Group.first(conditions: {group_name: 'master_group'}) 
-    Post.should_receive(:create).with(content: post['Hello Collaborators!'])
-    post '/groups', {"message"=>'Hello Collaborators!'}
-end
-
-it 'posts new message to a group' do 
-	  Post.should_receive(:create).with(content: 'Hello Collaborators!')
-    post.should_receive(:group_name)
-end
-=======
   it 'creates a new group' do
-    Group.should_receive(:create).with({:name => 'testgroup'})
-    
+    Group.should_receive(:create).with({:group_name => 'testgroup'})
     post '/groups', {'add_group' => 'testgroup'}
   end
->>>>>>> ecomba/master
+
  # tells it to only return the group name on the page we are interested in (list of groups)
 	
 	#context 'creating a new post' do

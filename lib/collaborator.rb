@@ -20,7 +20,7 @@ class Collaborator < Sinatra::Base
 
   post '/groups' do
     Group.create(:group_name => params['add_group'])
-    redirect '/list-of-groups'
+    redirect '/groups'
   end
 
   get '/groups' do
