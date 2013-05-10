@@ -19,6 +19,9 @@ module NavigationHelpers
     when /the timeline page/
       '/group-timeline'
 
+    when /add a new group page/
+      '/group/create'
+
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

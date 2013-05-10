@@ -8,12 +8,6 @@ class Post
   field :content, type: String
 end
 
-class Post
-  include Mongoid::Document
-
-  field :content, type: String
-end
-
 require_relative 'post'
 require_relative 'group'
 
@@ -31,12 +25,18 @@ class Collaborator < Sinatra::Base
     erb :post_form
   end
 
+  get '/group/create' do
+    erb :create_group
+  end
 
-  
-  get '/list-of-groups' do
+  post '/list-of-groups' do
+    Group.create(:name => params['add_group'])
     erb :list_of_groups, locals: { :groups => Group.all }
   end
 
+  get '/list-of-groups' do
+    erb :list_of_groups, locals: { :groups => Group.all }
+  end
 
   post '/mock-groupname' do 
     erb :post_id1, locals: { :post => Post.create(:content => params['message']) }
