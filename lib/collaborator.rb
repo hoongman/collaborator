@@ -5,6 +5,8 @@ require 'mongoid'
 
 require_relative 'post'
 require_relative 'group'
+require_relative 'user'
+
 
 
 class Collaborator < Sinatra::Base
@@ -15,6 +17,11 @@ class Collaborator < Sinatra::Base
 
   get '/' do
     'Hey there'
+  end
+
+  get '/login' do
+    erb :login_form
+    # check if the KV pair exists in mongoDB and if so, allow entry
   end
 
   get '/mock-groupname' do
