@@ -18,13 +18,13 @@ describe Collaborator do
 
 it 'sending a request to /' do
     get '/'
-    
     last_response.body.should eq 'Hey there'
 end
 
 it 'post a new message' do
-    Post.should_receive(:create).with(content: 'Hello Collaborators!')
-    post '/mock-groupname', {"message"=>"Hello Collaborators!"}
+		group = Group.first(conditions: {group_name: 'master_group'}) 
+    group.posts.should_receive(:create).with(content: post['Hello Collaborators!'])
+    post '/mock-groupname', {"message"=>'Hello Collaborators!'}
 end
 
 it 'posts new message to a group' do 
