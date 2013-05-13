@@ -11,11 +11,12 @@ describe Collaborator do #describing the Collaborator class
   end
 
 
-	it 'post a new message' do
+	xit 'post a new message' do
 		posts = double :posts, :create => ''
 		group = double :group, :posts => posts
 		Group.should_receive(:find_or_create_by).with({group_name: 'master_group'}).and_return(group)
 		post '/mock-groupname', {'message'=>'Hello Collaborators!'}
+  end
 
 	xit 'post a new message' do
 		Post.should_receive(:create).with(content: 'Hello Collaborators!')

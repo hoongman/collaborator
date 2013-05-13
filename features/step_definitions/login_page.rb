@@ -7,8 +7,7 @@ end
 
 When(/^I login with my username and password$/) do |login|
 	login.hashes.each do |user|
-		
-
+	end
   pending # express the regexp above with the code you wish you had
 end
 
