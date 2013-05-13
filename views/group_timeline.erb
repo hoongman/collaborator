@@ -1,4 +1,10 @@
-<p>Hello World</p>
+<p>Group Timeline</p>
+
+<form method='POST'>
+	<input type='text' name='message' placeholder='go on, post something here' />
+	<button>Post</button>
+</form>
+
 <ul>
   <% posts.each do |post| %>
     <li><%= post.content %></li>

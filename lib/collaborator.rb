@@ -14,8 +14,8 @@ class Collaborator < Sinatra::Base
  
   Mongoid.load!(File.join(File.dirname(__FILE__),'mongoid.yml'))
 
-  get '/group/create' do
-    erb :create_group
+  get '/groups' do
+    erb(:list_of_groups, locals: { :groups => Group.all })
   end
 
   post '/groups' do
@@ -23,17 +23,14 @@ class Collaborator < Sinatra::Base
     redirect '/groups'
   end
 
-  get '/groups' do
-    erb(:list_of_groups, locals: { :groups => Group.all })
+  get '/group/create' do
+    erb :create_group
   end
 
-  get '/post/:group_name' do |group_name|
-    erb :post_form
-  end
-
-  post '/post/:group_name' do |group_name|
+  post '/groups/:group_name' do |group_name|
     group = Group.find_or_create_by(group_name: group_name)
-    erb :post_id1, locals: { :post => group.posts.create(:content  => params['message']) }
+    group.posts.create(:content  => params['message'])
+    redirect '/groups/' + group_name
   end
 
   get '/groups/:group_name' do |group_name|
