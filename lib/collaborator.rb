@@ -22,6 +22,16 @@ class Collaborator < Sinatra::Base
     # check if the KV pair exists in mongoDB and if so, allow entry
   end
 
+  post '/login' do
+    if params['username']==settings.username&&params['password']==settings.password
+      response.set_cookie(settings.username,settings.token) 
+      redirect '/'
+    else
+      "Username or Password incorrect"
+    end
+end
+
+
   get '/mock-groupname' do
     erb :post_form
     

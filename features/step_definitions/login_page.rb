@@ -5,7 +5,10 @@ Given(/^a user exists with the following username and password$/) do |login|
 	end
 end
 
-When(/^I login with my username and password$/) do
+When(/^I login with my username and password$/) do |login|
+	login.hashes.each do |user|
+		
+
   pending # express the regexp above with the code you wish you had
 end
 
