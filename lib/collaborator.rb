@@ -27,18 +27,18 @@ class Collaborator < Sinatra::Base
     erb(:list_of_groups, locals: { :groups => Group.all })
   end
 
-  get '/mock-groupname' do
+  get '/post/:group_name' do |group_name|
     erb :post_form
   end
 
-  post '/mock-groupname' do
-    group = Group.find_or_create_by(group_name: 'master_group')
+  post '/post/:group_name' do |group_name|
+    group = Group.find_or_create_by(group_name: group_name)
     erb :post_id1, locals: { :post => group.posts.create(:content  => params['message']) }
   end
 
   get '/groups/:group_name' do |group_name|
-
-    erb :group_timeline, locals: { :posts => Post.all }
+    group = Group.first(conditions: { :group_name => group_name})
+    erb :group_timeline, locals: { :posts => group.posts }
   end 
 
   # start the server if ruby file executed directly
