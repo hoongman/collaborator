@@ -2,12 +2,9 @@ require 'sinatra/base'
 #this inside the sinatra gem
 require 'mongoid'
 #this refers to the mongoid gem
-
 require_relative 'post'
 require_relative 'group'
 require_relative 'user'
-
-
 
 class Collaborator < Sinatra::Base
   #this class is a controller
@@ -17,13 +14,14 @@ class Collaborator < Sinatra::Base
  
   Mongoid.load!(File.join(File.dirname(__FILE__),'mongoid.yml'))
 
-
   get '/groups' do
     erb(:list_of_groups, locals: { :groups => Group.all })
   end
 
   post '/groups' do
     Group.create(:group_name => params['add_group'])
+    redirect '/groups'
+  end
 
   get '/' do
     erb :login_form
@@ -41,10 +39,7 @@ class Collaborator < Sinatra::Base
       redirect '/'
     end
   end
-
-    redirect '/groups'
-  end
-
+  
   get '/group/create' do
     erb :create_group
   end
