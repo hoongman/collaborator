@@ -20,6 +20,8 @@ module NavigationHelpers
       '/groups/testgroup'
     when /add a new group page/
       '/group/create'
+    when /the master group timeline page/
+      '/groups/master_group'
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
