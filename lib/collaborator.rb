@@ -5,6 +5,7 @@ require 'mongoid'
 
 require_relative 'post'
 require_relative 'group'
+require_relative 'user'
 
 class Collaborator < Sinatra::Base
   #this class is a controller
@@ -14,13 +15,40 @@ class Collaborator < Sinatra::Base
  
   Mongoid.load!(File.join(File.dirname(__FILE__),'mongoid.yml'))
 
+<<<<<<< HEAD
+=======
+  get '/mock-groupname' do
+    erb :post_form
+  end
+  
+  get '/login' do
+    erb :login_form
+  #check if the key - value pair exists in mongo and if so allow entry
+  end
+
+  post '/login' do
+    if params['username']==settings.username&&params['password']==settings.password
+      response.set_cookie(settings.username,settings.token)
+      redirect '/'
+    else
+      "Username or Password incorrect"
+    end
+  end
+
+>>>>>>> keir/master
   get '/group/create' do
     erb :create_group
   end
 
   post '/groups' do
+<<<<<<< HEAD
     Group.create(:group_name => params['add_group'])
     redirect '/groups'
+=======
+    Group.create(:name => params['add_group'])
+    redirect '/list-of-groups'
+
+>>>>>>> keir/master
   end
 
   get '/groups' do

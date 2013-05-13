@@ -18,9 +18,7 @@ Feature: Post a new message
   - What about multimedia? (photos, videos, etc)
 
   Scenario: Posting a new message
-    Given I am on the post a new message page
+    Given I am on the group timeline page
     When I fill in "message" with "Hey Collaborators!"
     And I press "Post"
     Then I should see "Your message: 'Hey Collaborators!' has been posted"
-
-    #get rid of all the mongo logs in cuke
