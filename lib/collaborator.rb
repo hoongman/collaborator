@@ -17,20 +17,22 @@ class Collaborator < Sinatra::Base
 
   Mongoid.load!(File.join(File.dirname(__FILE__),'mongoid.yml'))
 
-  get '/login' do
+  get '/' do
     erb :login_form
     # check if the KV pair exists in mongoDB and if so, allow entry
   end
 
   post '/login' do
-    if params['username']==settings.username&&params['password']==settings.password
-      response.set_cookie(settings.username,settings.token) 
-      redirect '/'
-    else
-      "Username or Password incorrect"
-    end
-end
+    user = User.first({:conditions=>{:username=>params['username']}})
 
+    if user.nil?
+      redirect '/'
+    elsif user.password == params['password']
+      redirect '/groups'
+    else
+      redirect '/'
+    end
+  end
 
   get '/mock-groupname' do
     erb :post_form
@@ -43,7 +45,7 @@ end
 
   post '/groups' do
     Group.create(:name => params['add_group'])
-    redirect '/list-of-groups'
+    redirect '/groups'
   end
 
   get '/groups' do

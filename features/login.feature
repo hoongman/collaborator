@@ -19,10 +19,19 @@ Feature: Find a particular username and password combination
 		Given a user exists with the following username and password
 		|username|password|
 		|Fred    |secret  |
-		When I login with my username
-		|username|
-		|Fred    |
-		Then I should be sent to the "welcome" page
-		But if I enter unmatched or unknown login details
-		Then I should be sent to an unsuccessful login page 
+		When I am on the home page
+		And I fill in "username" with "Fred"
+		And I fill in "password" with "secret"
+		And I press "Login"
+		Then I should see a list of all the groups
+
+	Scenario: Failed Login
+		Given a user exists with the following username and password
+		|username|password|
+		|Fred    |s3cr3t  |
+		When I am on the home page
+		And I fill in "username" with "Fred"
+		And I fill in "password" with "mepassword"
+		And I press "Login"
+		Then I should see "Please Login"
 
