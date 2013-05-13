@@ -18,11 +18,19 @@ class Collaborator < Sinatra::Base
   get '/mock-groupname' do
     erb :post_form
   end
-
   
   get '/login' do
     erb :login_form
   #check if the key - value pair exists in mongo and if so allow entry
+  end
+
+  post '/login' do
+    if params['username']==settings.username&&params['password']==settings.password
+      response.set_cookie(settings.username,settings.token)
+      redirect '/'
+    else
+      "Username or Password incorrect"
+    end
   end
 
   get '/group/create' do
