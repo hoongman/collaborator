@@ -19,7 +19,7 @@ class Collaborator < Sinatra::Base
   end
  
   post '/sign_up' do
-    User.create!(:username => params['username'])
+    User.create!(:username => params['username'], :password => params['password'])
     redirect '/groups'
   end
 
