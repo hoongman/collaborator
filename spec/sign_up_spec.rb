@@ -11,8 +11,8 @@ describe 'sign_up' do
   #no idea what this is for
 
   it 'creates a new user' do
-   User.should_receive(:create!).with({:username => 'matt'})
-   post '/sign_up', {'username' => 'matt'}   
+   User.should_receive(:create!).with({:username => 'matt', :password => 'Elephant'})
+   post '/sign_up', {'username' => 'matt', 'password' => 'Elephant'}   
   end
 
   
