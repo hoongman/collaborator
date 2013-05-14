@@ -17,9 +17,11 @@ Feature: List all groups
   
   Scenario: Showing all the groups any given user belongs to
     Given the following groups are available:
+
     | group name |
     | Monkey |
     | Tiger |
+
     When I am on the list of groups page
     Then I will see the following groups:
     | group name |

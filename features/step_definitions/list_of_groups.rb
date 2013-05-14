@@ -1,3 +1,4 @@
+
 Given(/^the following groups are available:$/) do  |group_names|
 	#[{'group_name' => 'Monkey'}, {'group_name' => 'Tiger'}]
 

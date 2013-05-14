@@ -1,3 +1,4 @@
+
 Feature: Post a new message
   In order to comunicate with my mates
   As Fred
@@ -18,9 +19,12 @@ Feature: Post a new message
   - What about multimedia? (photos, videos, etc)
 
   Scenario: Posting a new message
-    Given I am on the post a new message page
-    When I fill in "message" with "Hey Collaborators!"
+    Given the following posts exist:
+      | post content |
+      | Hey cohorts  |
+      | What's up?   |
+    When I am on the master group timeline page
+    And I fill in "message" with "Hey Collaborators!"
     And I press "Post"
-    Then I should see "Your message: 'Hey Collaborators!' has been posted"
-
-    #get rid of all the mongo logs in cuke
+    Then I should see 'Hey Collaborators!'
+    
