@@ -56,14 +56,7 @@ class Collaborator < Sinatra::Base
     redirect '/groups/' + group_name
   end
 
-  get '/users/create' do
-    erb :users_create, locals: { :users =>  User.all}
-  end
 
-  post '/users/create' do
-    User.create(username: params['username'], password: params['password'])
-    redirect '/users/create'
-  end
 
   # start the server if ruby file executed directly
   run! if app_file == $0
