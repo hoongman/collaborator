@@ -19,9 +19,12 @@ class Collaborator < Sinatra::Base
   end
 
   post '/groups' do
-    Group.create(:group_name => params['add_group'])
+    group = Group.create(:group_name => params['add_group'], :url => params['add_group'].gsub(' ', "_"))
+
     redirect '/groups'
   end
+
+
 
   get '/' do
     erb :login_form
@@ -51,7 +54,7 @@ class Collaborator < Sinatra::Base
   end
 
   get '/groups/:group_name' do |group_name|
-    group = Group.first(conditions: { :group_name => group_name})
+    group = Group.first(conditions: { :url => group_name})
     erb :group_timeline, locals: { :posts => group.posts }
   end 
 
