@@ -18,7 +18,7 @@ class Collaborator < Sinatra::Base
     erb(:list_of_groups, locals: { :groups => Group.all })
   end
 
-  post '/groups' do
+  post '/groups' do 
     Group.create(:group_name => params['add_group'])
     redirect '/groups'
   end
@@ -41,8 +41,14 @@ class Collaborator < Sinatra::Base
   end
   
   get '/group/create' do
+    
     erb :create_group
   end
+
+  get '/groups/:group_name' do |group_name|
+    group = Group.first(conditions: { :group_name => group_name})
+    erb :group_timeline, locals: { :posts => group.posts.order_by([:created_at, :desc]),:group => group.group_name }
+  end 
 
   post '/groups/:group_name' do |group_name|
     group = Group.find_or_create_by(group_name: group_name)
@@ -50,10 +56,14 @@ class Collaborator < Sinatra::Base
     redirect '/groups/' + group_name
   end
 
-  get '/groups/:group_name' do |group_name|
-    group = Group.first(conditions: { :group_name => group_name})
-    erb :group_timeline, locals: { :posts => group.posts }
-  end 
+  get '/users/create' do
+    erb :users_create, locals: { :users =>  User.all}
+  end
+
+  post '/users/create' do
+    User.create(username: params['username'], password: params['password'])
+    redirect '/users/create'
+  end
 
   # start the server if ruby file executed directly
   run! if app_file == $0

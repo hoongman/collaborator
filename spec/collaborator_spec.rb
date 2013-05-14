@@ -64,5 +64,7 @@ describe Collaborator do #describing the Collaborator class
     	post '/login', {'username' => 'Fred', 'password' => 'secret'}
     end
 
+    
+
 
 end

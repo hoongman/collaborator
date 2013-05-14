@@ -19,12 +19,15 @@ Feature: Post a new message
   - What about multimedia? (photos, videos, etc)
 
   Scenario: Posting a new message
-    Given the following posts exist:
+    Given the following posts exist in the "master_group":
       | post content |
       | Hey cohorts  |
       | What's up?   |
-    When I am on the master group timeline page
+    When I am on the master_group timeline page
     And I fill in "message" with "Hey Collaborators!"
     And I press "Post"
-    Then I should see 'Hey Collaborators!'
-    
+    Then I should see the following posts:
+      | post content |
+      | Hey cohorts  |
+      | What's up?   |
+      | Hey Collaborators |

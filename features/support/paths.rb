@@ -12,16 +12,24 @@ module NavigationHelpers
 
     when /the home\s?page/
       '/'
+
     when /the new message page/
       '/groups/master_group'
+
     when /list of groups page/
       '/groups'
+
     when /the timeline page/
       '/groups/testgroup'
+
     when /add a new group page/
       '/group/create'
-    when /the master group timeline page/
+
+    when /the master_group timeline page/
       '/groups/master_group'
+
+    when /the create users page/
+      '/users/create'
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
