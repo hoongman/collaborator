@@ -11,6 +11,7 @@ describe Collaborator do #describing the Collaborator class
   end
 
 
+
 	xit 'post a new message' do
 		posts = double :posts, :create => ''
 		group = double :group, :posts => posts
