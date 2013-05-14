@@ -22,6 +22,10 @@ class Collaborator < Sinatra::Base
     Group.create(:group_name => params['add_group'])
     redirect '/groups'
   end
+  
+  get '/sign_up' do
+    erb :sign_up
+  end
 
   get '/' do
     erb :login_form
