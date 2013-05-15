@@ -11,10 +11,11 @@ class Collaborator < Sinatra::Base
   #this is the app too! - because it is inheriting from Sinatra::Base
   set :views, File.join(File.dirname(__FILE__), '../views')
   set :public_folder, File.join(File.dirname(__FILE__), '../public')
-
+  enable :sessions
+  
   Mongoid.load!(File.join(File.dirname(__FILE__),'mongoid.yml'))
 
-  # +=+=+=+ for SIGN UP module +=+=+=+ #
+# +=+=+=+ for SIGN UP module +=+=+=+ #
   get '/sign_up' do
     erb :sign_up
   end
@@ -24,8 +25,8 @@ class Collaborator < Sinatra::Base
     redirect '/groups'
   end
 
-
   # +=+=+=+ for LOGIN module +=+=+=+ #
+
   get '/' do
     erb :login_form # check if the KV pair exists in mongoDB and if so, allow entry
   end
@@ -36,7 +37,7 @@ class Collaborator < Sinatra::Base
     if user.nil?
       redirect '/'
     elsif user.password == params['password']
-
+      session[:user] = user._id
       redirect '/groups'
     else
       redirect '/'
@@ -44,39 +45,31 @@ class Collaborator < Sinatra::Base
   end
 
   # +=+=+=+ for GROUP module +=+=+=+ #
+
   get '/group/create' do
 
     erb :create_group
   end
 
-  get '/groups/:group_name' do |group_name|
-    group = Group.first(conditions: { :group_name => group_name})
-    erb :group_timeline, locals: { :posts => group.posts.order_by([:created_at, :desc]),:group => group.group_name }
-  end
+  get '/groups/:group_url' do |group_url|
+    group = Group.first(conditions: { :url => group_url})
+    erb :group_timeline, locals: { :posts =>  group.posts.order_by([:created_at, :desc]), :group_name => group.group_name }
+  end 
 
-  post '/groups/:group_name' do |group_name|
-    group = Group.find_or_create_by(group_name: group_name)
+  post '/groups/:group_url' do |group_url|
+    group = Group.find_or_create_by(url: group_url)
     group.posts.create(:content  => params['message'])
-    redirect '/groups/' + group_name
+    redirect '/groups/' + group_url
   end
 
   post '/groups' do
-    Group.create(:group_name => params['add_group'])
+    Group.create(:group_name => params['add_group'], :url => params['add_group'].gsub(' ', "_"))
     redirect '/groups'
   end
 
   get '/groups' do
     erb(:list_of_groups, locals: { :groups => Group.all })
   end
-
-#  post '/groups/:group_name' do |group_name|
-#   group = Group.find_or_create_by(group_name: group_name)
-#   group.posts.create(:content  => params['message'])
-#   redirect '/groups/' + group_name
-#  end
-
-
-
 
   # start the server if ruby file executed directly
   run! if app_file == $0

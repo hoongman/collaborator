@@ -16,7 +16,7 @@ Feature: Have a group timeline
 
   Scenario: Viewing the timeline
     
-    Given the following posts exist in the "master_group":
+    Given the following posts created at the following times exist in the "master_group":
       | post content |
       | Hey cohorts  |
       | What's up?   |
@@ -26,8 +26,7 @@ Feature: Have a group timeline
       | Hey cohorts  |
       | What's up?   |
 
-  Scenario: Viewing the timeline in order (lastest posts first)
-
+  Scenario: Viewing the timeline in order (latest posts first)
     Given the following posts created at the following times exist in the "master_group":
       | post content | created_at                |
       | Hey cohorts  | 2013-05-14 16:50:21 +0100 |

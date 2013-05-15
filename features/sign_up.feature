@@ -17,5 +17,4 @@ Scenario: Sign up
 	When I fill in "username" with "Matt" within "#sign-in-form"
 	And I fill in "password" with "Elephant" within "#sign-in-form"
 	And I press "Sign up"
-	And show me the page
 	Then I should see the list of groups
