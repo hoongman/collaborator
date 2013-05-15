@@ -27,6 +27,8 @@ module NavigationHelpers
 
     when /the master_group timeline page/
       '/groups/master_group'
+    when /the sign up page/
+      '/sign_up'
 
     when /the create users page/
       '/users/create'

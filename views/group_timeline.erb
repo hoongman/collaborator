@@ -2,9 +2,11 @@
 
 <form method='POST'>
 	<input type='text' name='message' placeholder='go on, post something here' />
-	<button>Post</button>
+	<button class="btn btn-primary">Post</button>
 </form>
 
+<section class="your-posts">
+  <h4>Your Posts</h4>
 <ul>
   <% posts.each do |post| %>
     <li><h4><%= post.content %></h4>
@@ -12,3 +14,5 @@
     <p>___________________________________________________________________</p></li>
   <% end %>
 </ul>
+</section>
+>>>>>>> ecomba/master

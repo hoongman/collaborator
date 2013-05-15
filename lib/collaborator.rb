@@ -13,19 +13,21 @@ class Collaborator < Sinatra::Base
   set :public_folder, File.join(File.dirname(__FILE__), '../public')
  
   Mongoid.load!(File.join(File.dirname(__FILE__),'mongoid.yml'))
-
-  get '/groups' do
-    erb(:list_of_groups, locals: { :groups => Group.all })
+  
+  # +=+=+=+ for SIGN UP module +=+=+=+ #
+  get '/sign_up' do
+    erb :sign_up
   end
-
-  post '/groups' do 
-    Group.create(:group_name => params['add_group'])
+ 
+  post '/sign_up' do
+    User.create!(:username => params['username'], :password => params['password'])
     redirect '/groups'
   end
 
+
+  # +=+=+=+ for LOGIN module +=+=+=+ #
   get '/' do
-    erb :login_form
-    # check if the KV pair exists in mongoDB and if so, allow entry
+    erb :login_form # check if the KV pair exists in mongoDB and if so, allow entry
   end
 
   post '/login' do
@@ -39,7 +41,8 @@ class Collaborator < Sinatra::Base
       redirect '/'
     end
   end
-  
+
+  # +=+=+=+ for GROUP module +=+=+=+ #
   get '/group/create' do
     
     erb :create_group
@@ -50,11 +53,23 @@ class Collaborator < Sinatra::Base
     erb :group_timeline, locals: { :posts => group.posts.order_by([:created_at, :desc]),:group => group.group_name }
   end 
 
-  post '/groups/:group_name' do |group_name|
-    group = Group.find_or_create_by(group_name: group_name)
-    group.posts.create(:content  => params['message'])
-    redirect '/groups/' + group_name
+  post '/groups' do
+    Group.create(:group_name => params['add_group'])
+    redirect '/groups'
   end
+
+  get '/groups' do
+    erb(:list_of_groups, locals: { :groups => Group.all })
+  end
+
+#  post '/groups/:group_name' do |group_name|
+#   group = Group.find_or_create_by(group_name: group_name)
+#   group.posts.create(:content  => params['message'])
+#   redirect '/groups/' + group_name
+#  end
+
+
+
 
 
 
