@@ -14,21 +14,20 @@ class Collaborator < Sinatra::Base
  
   Mongoid.load!(File.join(File.dirname(__FILE__),'mongoid.yml'))
 
-  get '/groups' do
-    erb(:list_of_groups, locals: { :groups => Group.all })
+  
+  # +=+=+=+ for SIGN UP module +=+=+=+ #
+  get '/sign_up' do
+    erb :sign_up
   end
-
-  post '/groups' do
-    group = Group.create(:group_name => params['add_group'], :url => params['add_group'].gsub(' ', "_"))
-
+ 
+  post '/sign_up' do
+    User.create!(:username => params['username'], :password => params['password'])
     redirect '/groups'
   end
 
 
-
   get '/' do
-    erb :login_form
-    # check if the KV pair exists in mongoDB and if so, allow entry
+    erb :login_form # check if the KV pair exists in mongoDB and if so, allow entry
   end
 
   post '/login' do
@@ -42,9 +41,18 @@ class Collaborator < Sinatra::Base
       redirect '/'
     end
   end
-  
+
   get '/group/create' do
     erb :create_group
+  end
+
+  post '/groups' do
+    Group.create(:group_name => params['add_group'], :url => params['add_group'].gsub(' ', "_"))
+    redirect '/groups'
+  end
+
+  get '/groups' do
+    erb(:list_of_groups, locals: { :groups => Group.all })
   end
 
   post '/groups/:group_name' do |group_name|
@@ -57,6 +65,9 @@ class Collaborator < Sinatra::Base
     group = Group.first(conditions: { :url => group_name})
     erb :group_timeline, locals: { :posts => group.posts }
   end 
+
+
+
 
   # start the server if ruby file executed directly
   run! if app_file == $0
