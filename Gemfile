@@ -16,7 +16,9 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'guard'
   gem 'guard-rspec'
+  gem 'launchy'
   gem 'rspec'
   gem 'rb-fsevent'
   gem 'terminal-notifier-guard'
+  gem 'launchy'
 end

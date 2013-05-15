@@ -17,14 +17,17 @@ Feature: List all groups
   
   Scenario: Showing all the groups any given user belongs to
     Given the following groups are available:
-
     | group name |
+    | Hiking |
     | Monkey |
     | Tiger |
-
     When I am on the list of groups page
     Then I will see the following groups:
     | group name |
+    | Hiking |
     | Monkey |
     | Tiger |
+    When I follow "Hiking" 
+    Then I should see "You are in the group named: Hiking"
+
     
