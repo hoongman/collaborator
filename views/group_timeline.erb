@@ -1,12 +1,16 @@
-<p>Group Timeline</p>
+<h2>Group Timeline</h2>
 
 <form method='POST'>
 	<input type='text' name='message' placeholder='go on, post something here' />
-	<button>Post</button>
+	<button class="btn btn-primary">Post</button>
 </form>
 
-<ul>
-  <% posts.each do |post| %>
-    <li><%= post.content %></li>
-  <% end %>
-</ul>
+
+<section class="your-posts">
+  <h4>Your Posts</h4>
+  <ul>
+    <% posts.each do |post| %>
+      <li><%= post.content %></li>
+    <% end %>
+  </ul>
+</section>
