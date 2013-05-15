@@ -7,12 +7,23 @@ require_relative 'group'
 require_relative 'user'
 
 class Collaborator < Sinatra::Base
+  enable :sessions
   #this class is a controller
   #this is the app too! - because it is inheriting from Sinatra::Base
   set :views, File.join(File.dirname(__FILE__), '../views')
   set :public_folder, File.join(File.dirname(__FILE__), '../public')
  
   Mongoid.load!(File.join(File.dirname(__FILE__),'mongoid.yml'))
+
+  before '/groups/*' do 
+      begin
+        user = User.find(session[:user])
+      
+      rescue Exception
+          redirect '/'
+        end
+  end
+
 
   get '/groups' do
     erb(:list_of_groups, locals: { :groups => Group.all })
@@ -34,6 +45,7 @@ class Collaborator < Sinatra::Base
     if user.nil?
       redirect '/'
     elsif user.password == params['password']
+      session[:user] = user._id
       redirect '/groups'
     else
       redirect '/'
