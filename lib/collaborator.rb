@@ -11,17 +11,15 @@ class Collaborator < Sinatra::Base
   #this is the app too! - because it is inheriting from Sinatra::Base
   set :views, File.join(File.dirname(__FILE__), '../views')
   set :public_folder, File.join(File.dirname(__FILE__), '../public')
- 
+
   Mongoid.load!(File.join(File.dirname(__FILE__),'mongoid.yml'))
 
 
-
-  
   # +=+=+=+ for SIGN UP module +=+=+=+ #
   get '/sign_up' do
     erb :sign_up
   end
- 
+
   post '/sign_up' do
     User.create!(:username => params['username'], :password => params['password'])
     redirect '/groups'
@@ -41,6 +39,7 @@ class Collaborator < Sinatra::Base
     if user.nil?
       redirect '/'
     elsif user.password == params['password']
+
       redirect '/groups'
     else
       redirect '/'
@@ -72,7 +71,7 @@ class Collaborator < Sinatra::Base
   get '/groups/:group_name' do |group_name|
     group = Group.first(conditions: { :group_name => group_name})
     erb :group_timeline, locals: { :posts => group.posts }
-  end 
+  end
 
 
 
