@@ -19,4 +19,5 @@ group :development, :test do
   gem 'rspec'
   gem 'rb-fsevent'
   gem 'terminal-notifier-guard'
+  gem 'launchy'
 end
