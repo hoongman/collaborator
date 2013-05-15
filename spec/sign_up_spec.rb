@@ -15,12 +15,13 @@ describe 'sign_up' do
    post '/sign_up', {'username' => 'matt', 'password' => 'Elephant'}   
   end
 
-  
-
   it 'creates a new group' do
     Group.should_receive(:create).with({:group_name => 'testgroup'})
     post '/groups', {'add_group' => 'testgroup'}
   end
 
 end
+
+
+# +=+=+=+ Tap up Keir or Matt regards the above tests +=+=+=+ #
 	
