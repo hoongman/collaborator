@@ -26,7 +26,7 @@ class Collaborator < Sinatra::Base
 
 
   get '/groups' do
-    erb(:list_of_groups, locals: { :groups => Group.all })
+    erb(:list_of_groups, locals: { :groups => Group.all , :user => User.find(session[:user])})
   end
 
   post '/groups' do 
