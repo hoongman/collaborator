@@ -15,11 +15,6 @@ class Collaborator < Sinatra::Base
   Mongoid.load!(File.join(File.dirname(__FILE__),'mongoid.yml'))
 
   
-
-  before do
-      puts 'ohai'
-  end
-
   # +=+=+=+ for SIGN UP module +=+=+=+ #
   get '/sign_up' do
     erb :sign_up

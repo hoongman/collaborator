@@ -10,15 +10,10 @@ describe 'create_group' do
   end
 
   it 'creates a new group' do
-    Group.should_receive(:create).with({:group_name => 'testgroup'})
+    Group.should_receive(:create).with({:group_name => 'testgroup', :url => 'testgroup'})
     post '/groups', {'add_group' => 'testgroup'}
   end
 
-  xit 'creates a new group' do
-      Group.should_receive(:create).with({:name => 'testgroup'})
-    
-      post '/groups', {'add_group' => 'testgroup'}
-    end
 end
 
 # +=+=+=+ Tap up Nicky or Matt regards the above tests +=+=+=+ #
