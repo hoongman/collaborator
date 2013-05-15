@@ -14,7 +14,6 @@ class Collaborator < Sinatra::Base
 
   Mongoid.load!(File.join(File.dirname(__FILE__),'mongoid.yml'))
 
-
   # +=+=+=+ for SIGN UP module +=+=+=+ #
   get '/sign_up' do
     erb :sign_up
@@ -24,8 +23,6 @@ class Collaborator < Sinatra::Base
     User.create!(:username => params['username'], :password => params['password'])
     redirect '/groups'
   end
-
-
 
 
   # +=+=+=+ for LOGIN module +=+=+=+ #
@@ -46,11 +43,21 @@ class Collaborator < Sinatra::Base
     end
   end
 
-
-
   # +=+=+=+ for GROUP module +=+=+=+ #
   get '/group/create' do
+
     erb :create_group
+  end
+
+  get '/groups/:group_name' do |group_name|
+    group = Group.first(conditions: { :group_name => group_name})
+    erb :group_timeline, locals: { :posts => group.posts.order_by([:created_at, :desc]),:group => group.group_name }
+  end
+
+  post '/groups/:group_name' do |group_name|
+    group = Group.find_or_create_by(group_name: group_name)
+    group.posts.create(:content  => params['message'])
+    redirect '/groups/' + group_name
   end
 
   post '/groups' do
@@ -62,16 +69,11 @@ class Collaborator < Sinatra::Base
     erb(:list_of_groups, locals: { :groups => Group.all })
   end
 
-  post '/groups/:group_name' do |group_name|
-    group = Group.find_or_create_by(group_name: group_name)
-    group.posts.create(:content  => params['message'])
-    redirect '/groups/' + group_name
-  end
-
-  get '/groups/:group_name' do |group_name|
-    group = Group.first(conditions: { :group_name => group_name})
-    erb :group_timeline, locals: { :posts => group.posts }
-  end
+#  post '/groups/:group_name' do |group_name|
+#   group = Group.find_or_create_by(group_name: group_name)
+#   group.posts.create(:content  => params['message'])
+#   redirect '/groups/' + group_name
+#  end
 
 
 

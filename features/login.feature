@@ -25,6 +25,7 @@ Feature: Find a particular username and password combination
 		And I press "Login"
 		Then I should see the list of groups
 
+
 	Scenario: Failed Login
 		Given a user exists with the following username and password
 		|username|password|
