@@ -13,25 +13,26 @@ Feature: Find a particular username and password combination
 
 	Open Questions
 	- signup option for new users?
-	- 
+	-
 
 	Scenario: Login
 		Given a user exists with the following username and password
 		|username|password|
-		|Fred    |secret  |
+		|Matt    |Elephant  |
 		When I am on the home page
-		And I fill in "username" with "Fred"
-		And I fill in "password" with "secret"
+		When I fill in "username" with "Matt" within "#login-form"
+		And I fill in "password" with "Elephant" within "#login-form"
 		And I press "Login"
 		Then I should see the list of groups
+
 
 	Scenario: Failed Login
 		Given a user exists with the following username and password
 		|username|password|
 		|Fred    |s3cr3t  |
 		When I am on the home page
-		And I fill in "username" with "Fred"
-		And I fill in "password" with "mepassword"
+		And I fill in "username" with "Fred" within "#login-form"
+		And I fill in "password" with "mepassword" within "#login-form"
 		And I press "Login"
 		Then I should see "Please Login"
 

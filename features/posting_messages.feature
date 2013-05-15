@@ -19,11 +19,11 @@ Feature: Post a new message
   - What about multimedia? (photos, videos, etc)
 
   Scenario: Posting a new message
-    Given the following posts exist:
+    Given the following posts created at the following times exist in the "master_group":
       | post content |
       | Hey cohorts  |
       | What's up?   |
-    When I am on the master group timeline page
+    When I am on the master_group timeline page
     And I fill in "message" with "Hey Collaborators!"
     And I press "Post"
     Then I should see "Hey Collaborators!"
@@ -37,5 +37,3 @@ Feature: Post a new message
     And I fill in "message" with "Hey hikers!"
     And I press "Post"
     Then I should see "Hey hikers!"
-
-

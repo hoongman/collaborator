@@ -1,12 +1,18 @@
-<p><%= group_name %> Group</p>
+
+<h2> You are in the group named: <%= group_name %> </h2>
 
 <form method='POST'>
 	<input type='text' name='message' placeholder='go on, post something here' />
-	<button>Post</button>
+	<button class="btn btn-primary">Post</button>
 </form>
 
+<section class="your-posts">
+  <h4>Your Posts</h4>
 <ul>
   <% posts.each do |post| %>
-    <li><%= post.content %></li>
+    <li><h4><%= post.content %></h4>
+    <p><%= post.created_at %></p>
+    <p>___________________________________________________________________</p></li>
   <% end %>
 </ul>
+</section>

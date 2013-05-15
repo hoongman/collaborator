@@ -1,11 +1,9 @@
 <section>
-	<div class="list_header">
-		<h1>List of groups</h1>
-	</div>
-	<ul>
+	<h2>Your groups</h2>
+	<ul class="">
 		<% groups.each do |group| %>
 		  <li><a href="/groups/<%= group.url %>"><%= group.group_name %></a></li>
 		<% end %>
 	</ul>
-	<a href="/group/create">Add another group...</a>
+	<a class="btn btn-primary" href="/group/create">Add another group</a>
 </section>

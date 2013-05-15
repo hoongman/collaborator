@@ -28,6 +28,6 @@ Feature: List all groups
     | Monkey |
     | Tiger |
     When I follow "Hiking" 
-    Then I should see "Hiking Group"
+    Then I should see "You are in the group named: Hiking"
 
     
