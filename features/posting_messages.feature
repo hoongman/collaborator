@@ -26,5 +26,16 @@ Feature: Post a new message
     When I am on the master group timeline page
     And I fill in "message" with "Hey Collaborators!"
     And I press "Post"
-    Then I should see 'Hey Collaborators!'
+    Then I should see "Hey Collaborators!"
     
+  Scenario: Posting a new message when group name is more than one word
+    Given the following groups are available:
+      | group name |
+      | Hiking friends|
+    When I am on the list of groups page
+    And I follow "Hiking friends" 
+    And I fill in "message" with "Hey hikers!"
+    And I press "Post"
+    Then I should see "Hey hikers!"
+
+

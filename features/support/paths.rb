@@ -24,7 +24,7 @@ module NavigationHelpers
       '/groups/master_group'
     when /the sign up page/
       '/sign_up'
-
+    
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #
