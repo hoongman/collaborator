@@ -10,9 +10,11 @@ describe 'delete a post' do
 
   end
 
-	it 'deletes a post' do
-			current_user = true
-			posts = double :post
+	it 'deletes a post' do 
+			User = double :User
+			posts = double :posts
+			User.should_receive(:find).and_return(true)
+			
 			Post.should_receive(:where).and_return(posts)			
 			posts.should_receive(:delete)
 

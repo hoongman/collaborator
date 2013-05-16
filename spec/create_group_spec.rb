@@ -10,6 +10,9 @@ describe 'create_group' do
   end
 
   it 'creates a new group' do
+  	User = double :User
+		posts = double :posts
+		User.should_receive(:find).and_return(true)
     Group.should_receive(:create).with({:group_name => 'testgroup', :url => 'testgroup'})
     post '/groups', {'add_group' => 'testgroup'}
   end

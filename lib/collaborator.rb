@@ -24,9 +24,9 @@ helpers do
   end
 end
 
-#before '/group*' do
- # redirect '/' unless current_user
-#end
+before '/group*' do
+  redirect '/' unless current_user
+end
   # in the original test we wrote puts "FILTERED"
   # to see that this was being executed before we
   # wrote the filter.
@@ -38,7 +38,8 @@ end
   end
 
   post '/sign_up' do
-    User.create!(:username => params['username'], :password => params['password'])
+    user = User.create!(:username => params['username'], :password => params['password'])
+    session[:user] = user._id
     redirect '/groups'
   end
 
