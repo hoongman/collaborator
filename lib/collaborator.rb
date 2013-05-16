@@ -9,6 +9,7 @@ require_relative 'user'
 class Collaborator < Sinatra::Base
   #this class is a controller
   #this is the app too! - because it is inheriting from Sinatra::Base
+
   set :views, File.join(File.dirname(__FILE__), '../views')
   set :public_folder, File.join(File.dirname(__FILE__), '../public')
   enable :sessions
@@ -33,13 +34,6 @@ end
 
 # +=+=+=+ for SIGN UP module +=+=+=+ #
 
-helpers do
-  def current_user
-    User.find(session[:user])
-  rescue Exception
-    nil
-  end
-end
 
 before '/group*' do
   #  puts 'FILTERED' this makes sure that it captures the urls you are interested so you know the filter will work
@@ -87,7 +81,7 @@ end
 
   get '/groups/:group_url' do |group_url|
     group = Group.first(conditions: { :url => group_url})
-    erb :group_timeline, locals: { :posts =>  group.posts.order_by([:created_at, :desc]), :group_name => group.group_name }
+    erb :group_timeline, locals: { :posts =>  group.posts.order_by([:created_at, :desc]), :group => group }
   end 
 
   post '/groups/:group_url' do |group_url|
@@ -103,6 +97,12 @@ end
 
   get '/groups' do
     erb(:list_of_groups, locals: { :groups => Group.all })
+  end
+
+  post '/groups/:group_url/delete_post' do  |group_url| 
+    posts = Post.where(_id: params['post_id'])
+    posts.delete
+    redirect '/groups/' + group_url
   end
 
   # start the server if ruby file executed directly
