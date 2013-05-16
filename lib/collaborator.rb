@@ -15,6 +15,22 @@ class Collaborator < Sinatra::Base
 
   Mongoid.load!(File.join(File.dirname(__FILE__),'mongoid.yml'))
 
+helpers do
+  def current_user
+    User.find(session[:user])
+  rescue Exception
+    nil
+  end
+end
+
+before '/group*' do
+  redirect '/' unless current_user
+end
+  # in the original test we wrote puts "FILTERED"
+  # to see that this was being executed before we
+  # wrote the filter.
+
+
 # +=+=+=+ for SIGN UP module +=+=+=+ #
   get '/sign_up' do
     erb :sign_up
@@ -28,7 +44,7 @@ class Collaborator < Sinatra::Base
   # +=+=+=+ for LOGIN module +=+=+=+ #
 
   get '/' do
-    erb :login_form # check if the KV pair exists in mongoDB and if so, allow entry
+    erb :login_form 
   end
 
   post '/login' do
@@ -55,6 +71,10 @@ class Collaborator < Sinatra::Base
 
     erb :create_group
   end
+
+# this is coming from the href in list_of_groups.erb
+# find the first item in the group corresponding to the group_url
+# 
 
   get '/groups/:group_url' do |group_url|
     group = Group.first(conditions: { :url => group_url})

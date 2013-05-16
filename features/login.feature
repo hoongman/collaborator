@@ -20,9 +20,10 @@ Feature: Find a particular username and password combination
 		|username|password|
 		|Matt    |Elephant  |
 		When I am on the home page
-		When I fill in "username" with "Matt" within "#login-form"
-		And I fill in "password" with "Elephant" within "#login-form"
+		When I fill in "username" with "testuser" within "#login-form"
+		And I fill in "password" with "testpass" within "#login-form"
 		And I press "Login"
+		Given a user is logged in
 		Then I should see the list of groups
 
 
@@ -31,8 +32,8 @@ Feature: Find a particular username and password combination
 		|username|password|
 		|Fred    |s3cr3t  |
 		When I am on the home page
-		And I fill in "username" with "Fred" within "#login-form"
-		And I fill in "password" with "mepassword" within "#login-form"
+		And I fill in "username" with "testuser" within "#login-form"
+		And I fill in "password" with "testpass" within "#login-form"
 		And I press "Login"
 		Then I should see "Please Login"
 
