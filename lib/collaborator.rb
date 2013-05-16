@@ -26,6 +26,8 @@ end
 before '/group*' do
   redirect '/' unless current_user
 end
+
+
   # in the original test we wrote puts "FILTERED"
   # to see that this was being executed before we
   # wrote the filter.
@@ -44,7 +46,7 @@ end
   # +=+=+=+ for LOGIN module +=+=+=+ #
 
   get '/' do
-    erb :login_form 
+    erb :login_form
   end
 
   post '/login' do
@@ -62,6 +64,12 @@ end
 
   # +=+=+=+ for LOGOUT module +=+=+=+ #
 
+#Logout function - returns nil so that the exception is used from above (returns to root)
+  get '/logout' do
+    session[:user] = nil
+    redirect '/goodbye'
+  end
+
   get '/goodbye' do
     erb :goodbye
   end
@@ -74,7 +82,7 @@ end
 
 # this is coming from the href in list_of_groups.erb
 # find the first item in the group corresponding to the group_url
-# 
+#
 
   get '/groups/:group_url' do |group_url|
     group = Group.first(conditions: { :url => group_url})
