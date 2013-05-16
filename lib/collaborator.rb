@@ -31,8 +31,10 @@ class Collaborator < Sinatra::Base
   end
 
   post '/sign_up' do
-    User.create!(:username => params['username'], :password => params['password'])
+    user = User.create!(:username => params['username'], :password => params['password'])
+    session[:user] = user._id
     redirect '/groups'
+
   end
 
   # +=+=+=+ for LOGIN module +=+=+=+ #
@@ -69,7 +71,7 @@ class Collaborator < Sinatra::Base
   post '/groups/:group_url' do |group_url|
     group = Group.find_or_create_by(url: group_url)
     group.posts.create(:content  => params['message'])
-    redirect '/groups/' + group_url
+    redirect '/groups/'
   end
 
   post '/groups' do
@@ -79,7 +81,7 @@ class Collaborator < Sinatra::Base
 
   get '/groups' do
     erb(:list_of_groups, locals: { :groups => Group.all , :user => User.find(session[:user])})
-
+  end
 
   # start the server if ruby file executed directly
   run! if app_file == $0
