@@ -16,11 +16,12 @@ Feature: Create a group
   
 
   Scenario: Create a group
-    Given the following groups are available:
+    Given a user is logged in
+    When the following groups are available:
     | group name |
     | Pandas |
     | April Cohorters |
-    When I am on the add a new group page
+    And I am on the add a new group page
     And I fill in "add_group" with "The April Group"
     And I press "Add Group"
     When I am on the list of groups page

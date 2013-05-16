@@ -14,7 +14,8 @@ Open questions:
 
 Scenario: Sign up
 	Given I am on the home page
-	When I fill in "username" with "Matt" within "#sign-in-form"
-	And I fill in "password" with "Elephant" within "#sign-in-form"
-	And I press "Sign up"
+	When I fill in "username" with "testuser" within "#login-form"
+	And I fill in "password" with "testpass" within "#login-form"
+	When I press "Sign up"
+	Given a user is logged in
 	Then I should see the list of groups
