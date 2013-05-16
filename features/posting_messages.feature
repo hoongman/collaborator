@@ -19,7 +19,8 @@ Feature: Post a new message
   - What about multimedia? (photos, videos, etc)
 
   Scenario: Posting a new message
-    Given the following posts created at the following times exist in the "master_group":
+    Given a user is logged in
+    When the following posts created at the following times exist in the "master_group":
       | post content |
       | Hey cohorts  |
       | What's up?   |
@@ -29,7 +30,8 @@ Feature: Post a new message
     Then I should see "Hey Collaborators!"
     
   Scenario: Posting a new message when group name is more than one word
-    Given the following groups are available:
+    Given a user is logged in
+    When the following groups are available:
       | group name |
       | Hiking friends|
     When I am on the list of groups page
