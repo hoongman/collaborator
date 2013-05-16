@@ -11,6 +11,7 @@ Feature: Delete a post
 	- why is the sky blue?
 
 	Scenario:
+		Given a user is logged in
 		Given the following posts created at the following times exist in the "master_group":
       | post content |
       | Hey cohorts  |

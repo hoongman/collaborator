@@ -7,9 +7,11 @@ describe 'delete a post' do
 
   def app
   	Collaborator
+
   end
 
 	it 'deletes a post' do
+			current_user = true
 			posts = double :post
 			Post.should_receive(:where).and_return(posts)			
 			posts.should_receive(:delete)
