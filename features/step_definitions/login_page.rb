@@ -21,3 +21,13 @@ end
 Then(/^I should be sent to an unsuccessful login page$/) do
   pending # express the regexp above with the code you wish you had
 end
+
+Given(/^a user is logged in$/) do
+  User.create(username: 'testuser', password: 'testpass')
+  visit '/'
+  within('#login-form') do
+  	fill_in 'username', :with => 'testuser'
+  	fill_in 'password', :with => 'testpass'
+  	click_button 'Login'
+  end
+end
