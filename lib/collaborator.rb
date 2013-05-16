@@ -12,7 +12,7 @@ class Collaborator < Sinatra::Base
   set :views, File.join(File.dirname(__FILE__), '../views')
   set :public_folder, File.join(File.dirname(__FILE__), '../public')
   enable :sessions
-  
+
   Mongoid.load!(File.join(File.dirname(__FILE__),'mongoid.yml'))
 
 # +=+=+=+ for SIGN UP module +=+=+=+ #
@@ -44,6 +44,11 @@ class Collaborator < Sinatra::Base
     end
   end
 
+  # +=+=+=+ for LOGOUT module +=+=+=+ #
+
+  get '/goodbye' do
+    erb :goodbye
+  end
   # +=+=+=+ for GROUP module +=+=+=+ #
 
   get '/group/create' do
@@ -54,7 +59,7 @@ class Collaborator < Sinatra::Base
   get '/groups/:group_url' do |group_url|
     group = Group.first(conditions: { :url => group_url})
     erb :group_timeline, locals: { :posts =>  group.posts.order_by([:created_at, :desc]), :group_name => group.group_name }
-  end 
+  end
 
   post '/groups/:group_url' do |group_url|
     group = Group.find_or_create_by(url: group_url)
