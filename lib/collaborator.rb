@@ -34,12 +34,6 @@ end
 
 # +=+=+=+ for SIGN UP module +=+=+=+ #
 
-
-before '/group*' do
-  #  puts 'FILTERED' this makes sure that it captures the urls you are interested so you know the filter will work
-  redirect '/' unless current_user
-end
-
   get '/sign_up' do
     erb :sign_up
   end
