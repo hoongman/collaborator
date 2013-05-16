@@ -16,6 +16,20 @@ class Collaborator < Sinatra::Base
   Mongoid.load!(File.join(File.dirname(__FILE__),'mongoid.yml'))
 
 # +=+=+=+ for SIGN UP module +=+=+=+ #
+
+helpers do
+  def current_user
+    User.find(session[:user])
+  rescue Exception
+    nil
+  end
+end
+
+before '/group*' do
+  #  puts 'FILTERED' this makes sure that it captures the urls you are interested so you know the filter will work
+  redirect '/' unless current_user
+end
+
   get '/sign_up' do
     erb :sign_up
   end
