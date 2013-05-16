@@ -64,7 +64,7 @@ end
     end
   end
 
-  # +=+=+=+ for LOGOUT module +=+=+=+ #
+# +=+=+=+ for LOGOUT module +=+=+=+ #
 
 #Logout function - returns nil so that the exception is used from above (returns to root)
   get '/logout' do

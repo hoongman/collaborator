@@ -1,8 +1,8 @@
 require 'collaborator'
 require 'rspec'
-require 'rack/test' 
+require 'rack/test'
 
-describe 'delete a post' do 
+describe 'delete a post' do
 	  include Rack::Test::Methods
 
   def app
@@ -13,10 +13,10 @@ describe 'delete a post' do
 	it 'deletes a post' do
 
 		user = double User
-  		User.should_receive(:find).and_return(user)
-	
+  	User.should_receive(:find).and_return(user)
+
 		posts = double :post
-		Post.should_receive(:where).and_return(posts)			
+		Post.should_receive(:where).and_return(posts)
 		posts.should_receive(:delete)
 
 		post '/groups/test_group/delete_post'
