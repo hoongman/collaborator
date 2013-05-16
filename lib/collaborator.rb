@@ -76,7 +76,6 @@ end
   # +=+=+=+ for GROUP module +=+=+=+ #
 
   get '/group/create' do
-
     erb :create_group
   end
 
@@ -95,7 +94,7 @@ end
     redirect '/groups/' + group_url
   end
 
-  post '/groups' do
+  post '/groups' do ()
     Group.create(:group_name => params['add_group'], :url => params['add_group'].gsub(' ', "_"))
     redirect '/groups'
   end
