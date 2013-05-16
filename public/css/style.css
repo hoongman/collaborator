@@ -58,6 +58,19 @@ a {
 	height:20px;
 }
 
+.home-btn {
+	position: absolute;
+	left: 10px;
+	width:60px;
+	height:20px;
+}
+.groups-btn {
+	position: absolute;
+	left: 100px;
+	width:60px;
+	height:20px;
+}
+
 .your-posts {
 	border-top: 8px solid #3498DB;
 	padding-top: 5px;
