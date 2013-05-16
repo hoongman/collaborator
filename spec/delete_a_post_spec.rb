@@ -11,12 +11,16 @@ describe 'delete a post' do
   end
 
 	it 'deletes a post' do
-			current_user = true
-			posts = double :post
-			Post.should_receive(:where).and_return(posts)			
-			posts.should_receive(:delete)
 
-			post '/groups/test_group/delete_post'
+		user = double User
+  		User.should_receive(:find).and_return(user)
+	
+		posts = double :post
+		Post.should_receive(:where).and_return(posts)			
+		posts.should_receive(:delete)
+
+		post '/groups/test_group/delete_post'
+
 	end
 end
 
