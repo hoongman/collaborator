@@ -6,5 +6,5 @@ test:
   database: collaborator_test
   host: localhost
 
-production:
+xproduction:
 	uri: <%=ENV['MONGOHQ_URL']%>
