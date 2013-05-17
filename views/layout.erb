@@ -1,20 +1,23 @@
 <html>
   <head>
-    <link rel="stylesheet" type="text/css" href='/css/boostrap.css'>
+    <link rel="stylesheet" type="text/css" href='/css/bootstrap.css'>
     <link rel="stylesheet" type="text/css" href='/css/flat-ui.css'>
   	<link rel="stylesheet" type="text/css" href='/css/style.css'>
   </head>
   <body>
-  	<section class="main">
-	  	<div class="header">
-	  		<h1>Collaborator.co.uk</h1>
-	  	</div>
-	    <p><%= yield %></p>
-      <div class="footer">
-        <a class='btn btn-success home-btn' href="/">Home</a>
-        <a class='btn btn-warning groups-btn' href="/">Groups</a>
+    <section class="header-strip">
+      <h1>collaborator.co.uk</h1>
+      <nav>
         <a class='btn btn-danger logout-btn' href="/logout">Logout</a>
-      </div>
+        <a class='btn btn-success home-btn' href="/">Home</a>
+        <a class='btn btn-warning groups-btn' href="/groups">Groups</a>
+      </nav>
+    </section>
+
+  	<section class="main">
+	    <p><%= yield %></p>
 	</section>
+  <section class="footer-strip">
+  <section/>
   </body>
 </html>

@@ -1,10 +1,55 @@
+body {
+	padding: 0;
+	margin: 0;
+}
+
 .main {
-	width: 50%;
+	max-width: 960px;
 	margin: 0 auto;
 	text-align: center;
-	border: 4px solid #3498DB;
-	border-radius: 6px;
+	height: 100%;
 }
+
+/* ==== HEADER & FOOTER STRIPS ==== */
+
+.header-strip {
+	position: relative;
+	width: 100%;
+	background-color: #2980B9;
+	color: #ECF0F1;
+	padding: 10px;
+}
+
+.footer-strip {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	height: 20px;
+	background-color: #2980B9;
+}
+
+.header-strip h1 {
+	text-shadow: -2px -2px 2px #000;
+}
+
+nav {
+	position: absolute;
+	right: 30px;
+	top: 10px;
+}
+
+nav > .btn {
+	padding: 2px;
+	padding-top: 10px;
+	height: 30px;
+}
+
+/* ==== FORM ==== */
+
+.forms {
+	margin-top: 40px;
+}
+
 input {
 	padding: 5px;
 	width: 75%;
@@ -35,51 +80,68 @@ a {
 	text-decoration: none;
 }
 
-.header{
-	background-color: #3498DB;
+.create-account, .login-account {
+	border-radius: 6px;
+}
+
+.create-account {
+	background-color: #F39C12;
+}
+
+.login-account {
+	background-color: #27AE60;
+}
+
+/* ==== GROUPS PAGE ==== */
+
+.group-list {
+	margin-top: 40px;
 	padding: 20px 0;
-	color: #fff;
-	text-align: center;
-}
-.footer {
-	position: relative;
-	background-color: #3498DB;
-	color: #fff;
-	text-align: center;
-	margin-top: 20px;
-	padding: 20px;
-	height: 40px;
+	border-radius: 6px;
+	background-color: #ECF0F1;
 }
 
-.logout-btn {
-	position: absolute;
-	right: 10px;
-	width:60px;
-	height:20px;
+.group-list > h2 {
+	width: 70%;
+	margin: 0 auto;
+	border: 4px solid #E74C3C;
+	border-bottom: none;
+	border-radius: 6px 6px 0px 0px;
 }
 
-.home-btn {
-	position: absolute;
-	left: 10px;
-	width:60px;
-	height:20px;
+.group-list > ul {
+	margin: 0 auto 10px;
+	width: 70%;
+	border: 4px solid #E74C3C;
+	border-radius: 6px;
+	background-color: #E74C3C;
+
 }
-.groups-btn {
-	position: absolute;
-	left: 100px;
-	width:60px;
-	height:20px;
+.group-list > ul > li {
+	font-size: 20px;
+	text-transform: uppercase;
+	padding: 5px;
 }
 
-.your-posts {
+.group-list > ul > li > a {
+	color: #ECF0F1;
+}
+.group-list > ul > li > a:hover {
+	background-color: #fff;
+	color: #7F8C8D;
+}
+
+/* ==== POSTS ==== */
+.capital {
+	text-transform: uppercase;
+}
+
+.posts {
+	border: 1px solid #000;
 	border-top: 8px solid #3498DB;
 	padding-top: 5px;
 }
 
-.sign-up {
-	border-top: 8px solid #3498DB;
-	padding-top: 5px;
-}
 h1 {
 	margin: 0;
 }
