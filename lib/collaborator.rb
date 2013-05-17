@@ -106,6 +106,16 @@ end
     erb(:list_of_groups, locals: { :groups => Group.all })
   end
 
+  # +=+=+=+ DELETE GROUP MODULE +=+=+=+ #
+
+  post '/groups/:group_url/delete_group' do |group_url|
+    groups = Group.where(_id: params['group_id'])
+    groups.delete
+    redirect '/groups'
+  end
+
+  # +=+=+=+ DELETE POST MODULE +=+=+=+ #
+
   post '/groups/:group_url/delete_post' do  |group_url|
     posts = Post.where(_id: params['post_id'])
     posts.delete
