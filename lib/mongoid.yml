@@ -1,4 +1,6 @@
 development:
+production:
+   uri: <%ENV['MONGOHQ_URL']%>
    database: collaborator 
    host: localhost
    
