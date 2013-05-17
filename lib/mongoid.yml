@@ -1,8 +1,10 @@
 development:
    database: collaborator 
    host: localhost
-   
+
 test:
   database: collaborator_test
   host: localhost
-    
+
+production:
+	uri: <%=ENV['MONGOHQ_URL']%>
