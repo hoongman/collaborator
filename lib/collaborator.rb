@@ -28,7 +28,9 @@ class Collaborator < Sinatra::Base
   # +=+=+=+ for LOGIN module +=+=+=+ #
 
   get '/' do
+    puts params.inspect
     erb :login_form # check if the KV pair exists in mongoDB and if so, allow entry
+
   end
 
   post '/login' do
