@@ -16,6 +16,8 @@ class CollaboratorWorld
   include RSpec::Matchers
 end
 
+Mongoid.logger = nil
+
 World do
   CollaboratorWorld.new
 end
