@@ -16,7 +16,8 @@ Feature: List all groups
   - Do we show any information about the group other than title?
   
   Scenario: Showing all the groups any given user belongs to
-    Given the following groups are available:
+    Given a user is logged in
+    When the following groups are available:
     | group name |
     | Hiking |
     | Monkey |

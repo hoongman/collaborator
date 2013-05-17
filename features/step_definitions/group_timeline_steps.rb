@@ -4,7 +4,7 @@ Then(/^I should see the following posts:$/) do |post_content|
     end
 end
 
-Given(/^the following posts created at the following times exist in the "(.*?)":$/) do |group_name, post_content|
+When(/^the following posts created at the following times exist in the "(.*?)":$/) do |group_name, post_content|
   group = Group.create(group_name: group_name, :url => group_name)
 
   post_content.hashes.each do |post|
