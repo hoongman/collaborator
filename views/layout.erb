@@ -5,22 +5,23 @@
   	<link rel="stylesheet" type="text/css" href='/css/style.css'>
   </head>
   <body>
-    <section class="header-strip">
-      <h1><a href="/">collaborator.co.uk</a></h1>
+    <header class="header-strip">
+      <h1>
+        <a href="/">collaborator.co.uk</a>
+      </h1>
       <nav>
-
         <% if current_user %>
           <a class='btn btn-warning groups-btn' href="/groups">Groups</a>
           <a class='btn btn-danger logout-btn' href="/logout">Logout</a>
-
         <% end %>
       </nav>
-    </section>
+    </header>
 
   	<section class="main">
 	    <p><%= yield %></p>
-	</section>
-  <section class="footer-strip">
-  <section/>
+    </section>
+
+    <footer class="footer-strip">
+    <footer/>
   </body>
 </html>
