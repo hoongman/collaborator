@@ -97,7 +97,7 @@ end
   post '/groups/:group_url' do |group_url|
     group = Group.find_or_create_by(url: group_url)
     post = group.posts.create(:content  => params['message'])
-    post.to_json
+    redirect '/groups/' + group_url
   end
 
   post '/groups' do ()
@@ -138,8 +138,8 @@ end
   end
 
   get '/profiles' do
-    user = User.all
-    erb :profiles, locals: {:user => user}
+    users = User.all
+    erb :profiles, locals: {:users => users}
   end
 
   get '/profiles/:user' do  |user|
