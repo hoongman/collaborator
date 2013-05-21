@@ -8,6 +8,9 @@ gem 'builder', "~>3.0.0"
 gem "mongoid", "~> 2.4"
 gem "bson_ext", "~> 1.5"
 gem "rack-test"
+gem "carrierwave"
+gem "carrierwave/sequel"
+gem "sequel"
 
 group :development, :test do
   gem 'capybara', '1.1.2'

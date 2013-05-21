@@ -2,6 +2,8 @@ require 'sinatra/base'
 #this inside the sinatra gem
 require 'mongoid'
 #this refers to the mongoid gem
+require 'CarrierWave'
+require 'Sequel'
 require_relative 'post'
 require_relative 'group'
 require_relative 'user'
@@ -43,7 +45,8 @@ end
   post '/sign_up' do
     user = User.create!(:username => params['username'], :password => params['password'])
     session[:user] = user._id
-    redirect '/groups'
+    user =current_user.username
+    redirect "/profiles/#{user}/create"
   end
 
   # +=+=+=+ for LOGIN module +=+=+=+ #
@@ -127,18 +130,45 @@ end
     group = Group.find(params['group_id'])
       group.delete
       redirect '/groups'
-  
   end
 
   get '/groups/:group_url/confirm_delete' do |group_url|
     group = Group.find_or_create_by(group_name: group_url)
-   erb :confirm_delete_group, locals: { :group => group }
+    erb :confirm_delete_group, locals: { :group => group }
   end
 
+  get '/profiles' do
+    user = User.all
+    erb :profiles, locals: {:user => user}
+  end
 
+  get '/profiles/:user' do  |user|
+    erb :profile_page, locals: { :user => current_user.username}
+  end
 
+  get '/profiles/:user/create' do  |user|
+    erb :profile_create, locals: { :user => current_user.username}
+  end
+
+  get '/upload' do 
+    @uploads = Upload.all 
+    erb :index
+  end
+
+  post '/upload' do 
+    upload = Upload.new
+    upload.file = params[:image]
+    upload.save
+    redirect to('/upload')
+  end
+  
   # start the server if ruby file executed directly
   run! if app_file == $0
   # really not sure what this is for (Matt)
 end
+
+class MyUploader < CarrierWave::Uploader::Base
+  storage :file
+end
+
 

@@ -1,19 +1,38 @@
-<section class="row forms">
-  <div class='span4 offset2 create-account'>
-    <h2>Create an account</h2>
-    <form method='POST' action='/sign_up' id='sign-in-form'>
-      <input name='username' type='text' placeholder='choose a username' />
-      <input name='password' type='password' placeholder='choose a password' />
-      <button class="btn btn-primary">Sign up</button>
-    </form>
-  </div>
+<script>
+  $(document).ready(function(){
+    $('.carousel').carousel();
+  });
+</script>
 
-  <div class='span4 login-account'>
-    <h2>Please Login</h2>
-    <form method='POST' action='/login' id="login-form">
-      <input type='text' name= 'username' placeholder= 'username' />
-      <input type='password' name= 'password' placeholder= 'password' id="login-password"/>
-      <button class="btn">Login</button>
-    </form>
+<div id="myCarousel" class="carousel slide">
+  <!-- Carousel items -->
+  <div class="carousel-inner">
+    <div class="active item">
+      <img src="/images/colab1.png" alt="" />
+    </div>
+    <div class="item">
+      <img src="/images/colab2.png" alt="" />
+    </div>
+    <div class="item">
+     <img src="/images/colab3.png" alt="" />
+    </div>
   </div>
-</section>
+  <!-- Carousel nav -->
+  <!--<a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+  <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a> -->
+</div>
+
+
+
+<h2>Please Login</h2>
+<form method='POST' action='/login' id="login-form">
+  <input type='text' name= 'username' placeholder= 'username' />
+  <input type='password' name= 'password' placeholder= 'password' id="login-password"/>
+  <button class="btn btn-success btn-block">Login</button>
+</form>
+
+<h4 style="margin-left: 150px">or create an account</h4>
+<form method='POST' action='/sign_up' id='sign-in-form'>
+  <input name='username' type='text' placeholder='choose a username' />
+  <button class="btn btn-primary btn-block">Create an account</button>
+</form>

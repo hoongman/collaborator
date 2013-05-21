@@ -16,7 +16,7 @@ describe 'delete a post' do
   	User.should_receive(:find).and_return(user)
 
 		posts = double :post
-		Post.should_receive(:where).and_return(posts)
+		Post.should_receive(:find).and_return(posts)
 		posts.should_receive(:delete)
 
 		post '/groups/test_group/delete_post'
