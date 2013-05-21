@@ -174,3 +174,10 @@ ul li {
 	margin-bottom: 15px
 }
 
+/* ==== GROUP TIMELINE ==== */
+
+#create-group-form {
+	display: none;
+}
+
+

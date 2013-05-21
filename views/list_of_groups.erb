@@ -1,13 +1,31 @@
 <section class="row">
   <article class="span6 offset3 group-list">
     <header>
+
+<!-- create group START -->
+
+      <span id="create-group-button" class="btn btn-primary">Add another group</span>
+
+      <aside id="create-group-form">
+        <h2>Create another group</h2>
+
+        <form method="POST" action="/groups">
+          <input type="text" name="add_group" placeholder="choose a group name" />
+          <span class="btn btn-primary">Create</span>
+        </form>
+
+      </aside>
+<!-- create group END -->
+
       <h2>Your groups</h2>
     </header>
+
+
     <ul class="">
       <% groups.each do |group| %>
         <li><a href="/groups/<%= group.url %>"><%= group.group_name %></a></li>
 
-		    <p>
+		    <p><span id="like-button" class="btn btn-success">LIKE</span>
 		      <form method='POST' action='/groups/<%= group.url%>/delete_group'>
 		        <input type='hidden' name='group_id' value='<%=group._id%>'>
 		        <button class="btn">Delete</button>
@@ -15,8 +33,51 @@
 		    </p>
       <% end %>
     </ul>
+
+
     <footer>
-      <a class="btn btn-primary" href="/group/create">Add another group</a>
     </footer>
   </article>
 </section>
+
+<script>
+
+  function add_group() {
+    $('#create-group-form').slideDown();
+    $('#create-group-button').addClass("btn-info");
+    $('#create-group-button').html("Submit");
+    $('#create-group-button').unbind('click');
+    $('#create-group-button').bind('click',submit_group);
+    }
+
+  function submit_group() {
+    $('#create-group-form').slideUp();
+    $('#create-group-button').html("Added Below");
+    $('#create-group-button').unbind('click')
+    $('#create-group-button').bind('click',abc);
+    }
+
+  $('#create-group-button').bind('click',add_group);
+
+
+  function like() {
+    $('like-button').addClass("btn-warning");
+    $('like-button').html("Unlike");
+    $('like-button').unbind('click');
+    $('like-button').bind('click',unlike);
+  }
+
+  function unlike() {
+    $('like-button').addClass("btn-success");
+    $('like-button').html("Like");
+    $('like-button').unbind('click');
+    $('like-button').bind('click',like);
+  }
+
+  $('#like-button').bind('click',like);
+
+</script>
+
+
+  $'#create-group-button').bind('click',
+  function() {}
