@@ -14,7 +14,15 @@
         <% if current_user %>
           <a class='btn btn-success groups-btn' href="/profiles">Profile</a>
           <a class='btn btn-warning groups-btn' href="/groups">Groups</a>
-          <a class='btn btn-danger logout-btn' href="/logout">Logout</a>
+              <div class="btn-group">
+                <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                  Settings
+                  <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu" style="background-color: red">
+                  <li> <a href="/logout"/>Logout </a></li>
+                </ul>
+              </div>
         <% end %>
       </nav>
     </header>
