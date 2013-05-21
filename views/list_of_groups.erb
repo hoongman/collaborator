@@ -5,13 +5,14 @@
     </header>
     <ul class="">
       <% groups.each do |group| %>
-        <li>
-          <a href="/groups/<%= group.url %>"><%= group.group_name %></a>
-          <!-- form method="POST" action="/my_groups">
-            <input type="text" name='group_id' value='<%=group._id%>' />
-            <button class="like-button">Like</button>
-          </form-->
-        </li>
+        <li><a href="/groups/<%= group.url %>"><%= group.group_name %></a></li>
+
+		    <p>
+		      <form method='POST' action='/groups/<%= group.url%>/delete_group'>
+		        <input type='hidden' name='group_id' value='<%=group._id%>'>
+		        <button class="btn">Delete</button>
+		      </form>
+		    </p>
       <% end %>
     </ul>
     <footer>
