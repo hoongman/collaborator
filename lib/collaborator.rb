@@ -147,8 +147,19 @@ end
   end
 
   get '/profiles/:user' do |user|
-    user = User.first(conditions: { :usernam => user})
-    erb :profile_page, locals: { :user => user }
+    cur_user = User.first(conditions: { :username => user})
+    erb :profile_page, locals: { :user => cur_user }
+  end
+  
+  post '/profiles/:user' do |user|
+      cur_user = User.first(conditions: { :username => user})
+      cur_user.update_attributes!(:username => params['username'],
+                        :password => params['password'],
+                        :firstname => params['firstname'],                
+                        :lastname => params['lastname'],
+                        :email => params['email'],
+                        :description => params['description'])
+    redirect "/profiles/#{user}"
   end
 
   get '/upload' do 

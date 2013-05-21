@@ -16,11 +16,13 @@
           <a class='btn btn-warning groups-btn' href="/groups">Groups</a>
               <div class="btn-group">
                 <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-                  Settings
+                  Welcome: <%=current_user.username%>
                   <span class="caret"></span>
                 </a>
-                <ul class="dropdown-menu" style="background-color: red">
-                  <li> <a href="/logout"/>Logout </a></li>
+                <ul class="dropdown-menu">
+                  <li><a href="profiles/<%=current_user.username %>"><i class="icon-cog"></i>Your profile</a></li>
+                  <li class="divider"></li>
+                  <li><a href="/logout"><i class="icon-off"></i>Logout</a></li>
                 </ul>
               </div>
         <% end %>
