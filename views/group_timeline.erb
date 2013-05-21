@@ -2,8 +2,8 @@
 
 <section class="row">
     <form method='POST'>
-      <input type='text' style='width:460px' name='message' placeholder='go on, post something here' />
-      <button class="btn btn-primary btn-block">Post</button>
+      <input id="post-message" type='text' style='width:460px' name='message' placeholder='go on, post something here' />
+      <span id="post-button" class="btn btn-primary btn-block">Post</span>
     </form>
 
 <h1>Your Posts</h1>
@@ -20,7 +20,7 @@
     <% end %>
   </ul>
 
-  <script>
+<script>
   $('#post-button').bind('click', function() {
     $.post('/groups/<%= group.url %>', { 'message': $('#post-message').val() }, function(data) {
       var post = $.parseJSON(data);
