@@ -15,7 +15,6 @@ class Collaborator < Sinatra::Base
   set :views, File.join(File.dirname(__FILE__), '../views')
   set :public_folder, File.join(File.dirname(__FILE__), '../public')
   enable :sessions
-
   Mongoid.load!(File.join(File.dirname(__FILE__),'mongoid.yml'))
 
 helpers do
@@ -29,18 +28,10 @@ end
 before '/group*' do
   redirect '/' unless current_user
 end
-
-
   # in the original test we wrote puts "FILTERED"
   # to see that this was being executed before we
   # wrote the filter.
-
-
 # +=+=+=+ for SIGN UP module +=+=+=+ #
-
-  get '/sign_up' do
-    erb :sign_up
-  end
 
   post '/sign_up' do
     user = User.create!(:username => params['username'], :password => params['password'])
@@ -48,9 +39,7 @@ end
     user =current_user.username
     redirect "/profiles/#{user}/create"
   end
-
   # +=+=+=+ for LOGIN module +=+=+=+ #
-
   get '/' do
     erb :login_form
   end
@@ -67,7 +56,6 @@ end
       redirect '/'
     end
   end
-
 # +=+=+=+ for LOGOUT module +=+=+=+ #
 
 #Logout function - returns nil so that the exception is used from above (returns to root)
@@ -142,12 +130,25 @@ end
     erb :profiles, locals: {:users => users}
   end
 
-  get '/profiles/:user' do  |user|
-    erb :profile_page, locals: { :user => current_user.username}
+  get '/profiles/create' do
+    erb :profile_create, locals: { :user => params['username']}
+  end
+  
+  post '/profiles/create' do
+    user = User.create!(:username => params['username'],
+                        :password => params['password'],
+                        :firstname => params['firstname'],                
+                        :lastname => params['lastname'],
+                        :email => params['email'],
+                        :description => params['description'])
+    session[:user] = user._id
+    user =  current_user.username
+    redirect '/groups'
   end
 
-  get '/profiles/:user/create' do  |user|
-    erb :profile_create, locals: { :user => current_user.username}
+  get '/profiles/:user' do |user|
+    user = User.first(conditions: { :usernam => user})
+    erb :profile_page, locals: { :user => user }
   end
 
   get '/upload' do 
