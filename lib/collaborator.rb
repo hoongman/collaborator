@@ -23,10 +23,20 @@ helpers do
   rescue Exception
     nil
   end
+
+  def admin_user
+    User.find(session[:user]).username == 'admin'
+  rescue Exception
+    nil
+  end
 end
 
 before '/group*' do
   redirect '/' unless current_user
+end
+
+before '/admin*' do
+  redirect '/' unless admin_user
 end
   # in the original test we wrote puts "FILTERED"
   # to see that this was being executed before we
@@ -36,7 +46,7 @@ end
   post '/sign_up' do
     user = User.create!(:username => params['username'], :password => params['password'])
     session[:user] = user._id
-    user =current_user.username
+    user = current_user.username
     redirect "/profiles/#{user}/create"
   end
   # +=+=+=+ for LOGIN module +=+=+=+ #
@@ -125,7 +135,7 @@ end
     erb :confirm_delete_group, locals: { :group => group }
   end
 
-  get '/profiles' do
+  get '/admin/profiles' do
     users = User.all
     erb :profiles, locals: {:users => users}
   end
@@ -147,6 +157,7 @@ end
   end
 
   get '/profiles/:user' do |user|
+    redirect '/' unless ((current_user.username == 'admin') || (current_user.username == user))
     cur_user = User.first(conditions: { :username => user})
     erb :profile_page, locals: { :user => cur_user }
   end

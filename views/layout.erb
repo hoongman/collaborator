@@ -1,8 +1,6 @@
   <html>
   <head>
     <link rel="stylesheet" type="text/css" href='/css/bootstrap.css'>
-
-    <link rel="stylesheet" type="text/css" href='/css/bootstrap-responsive.css'>
     <script type="text/javascript" src='/js/jquery-1.9.1.min.js'></script>
     <script type="text/javascript" src='/js/bootstrap.js'></script>
 
@@ -11,12 +9,14 @@
     <header class="span5 offset1">
       <h1><a href="/">collaborator.co.uk</a></h1>
       <nav>
-        <% if current_user %>
-          <a class='btn btn-success groups-btn' href="/profiles">Profile</a>
+        <% if admin_user %>
+          <a class='btn btn-success groups-btn' href="/admin/profiles">Profile</a>
+        <% end %>
+        <% if current_user %> 
           <a class='btn btn-warning groups-btn' href="/groups">Groups</a>
               <div class="btn-group">
                 <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-                  Welcome: <%=current_user.username%>
+                  <span>Welcome: </span><span style:"color: green"><%=current_user.username%></span>
                   <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
@@ -35,7 +35,7 @@
     	</div>
     </div>
 
-  <footer>
+  <footer class="container-fluid" style="background-color: #ADC8E0">
   </footer>
   </body>
 </html>

@@ -24,13 +24,20 @@
   <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a> -->
 </div>
 
-<h2>Please Login</h2>
-<form method='POST' action='/login' id="login-form">
-  <input type='text' name= 'username' placeholder= 'username' />
-  <input type='password' name= 'password' placeholder= 'password' id="login-password"/>
-  <button class="btn btn-success btn-block">Login</button>
-</form>
+<% unless current_user %> 
+  <h2>Please Login</h2>
+  <form method='POST' action='/login' id="login-form">
+    <input type='text' name= 'username' placeholder= 'username' />
+    <input type='password' name= 'password' placeholder= 'password' id="login-password"/>
+    <button class="btn btn-success btn-block">Login</button>
+  </form>
 
-<form method='GET' action='/profiles/create'>
-  <button class="btn btn-primary btn-block"> or Create an account</button>
-</form>
+  <form method='GET' action='/profiles/create'>
+    <button class="btn btn-primary btn-block"> or Create an account</button>
+  </form>
+<%end%>
+
+<% if current_user %> 
+  <h2>You are currently logged in as:</h2>
+  <h2 style="color: green"><%= current_user.username %></h2>
+<%end%>
