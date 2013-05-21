@@ -108,7 +108,7 @@ end
 
   # +=+=+=+ DELETE GROUP MODULE +=+=+=+ #
 
-  post '/groups/:group_url/delete_group' do |group_url|
+  post '/groups/:group_url/delete_group' do
     groups = Group.where(_id: params['group_id'])
     groups.delete
     redirect '/groups'
