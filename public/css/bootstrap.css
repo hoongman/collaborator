@@ -3150,7 +3150,7 @@ button.close {
   display: inline-block;
   *display: inline;
   padding: 4px 12px;
-  margin-bottom: 10;
+  margin-bottom: 0;
   *margin-left: .3em;
   font-size: 14px;
   line-height: 20px;
