@@ -166,7 +166,6 @@ p {
 
 ul {
 	list-style: none;
-	background-color: #fff;
 	padding: 20px 10px;
 }
 
@@ -174,7 +173,6 @@ ul li {
 	margin-bottom: 15px
 }
 
-/* ==== GROUP TIMELINE ==== */
 
 #create-group-form {
 	display: none;
@@ -183,6 +181,4 @@ ul li {
 header {
 	margin-bottom: 10px;
 }
-
-
 
