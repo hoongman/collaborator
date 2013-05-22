@@ -43,6 +43,12 @@ before '/admin*' do
   redirect '/' unless admin_user
 end
 
+# +=+=+=+ for ADMIN module +=+=+=+ #
+  get '/admin/profiles' do
+    users = User.all
+    erb :profiles, locals: {:users => users}
+  end
+
 # +=+=+=+ for SIGN UP module +=+=+=+ #
   post '/sign_up' do
     current_salt = salt
@@ -135,11 +141,7 @@ end
     erb :confirm_delete_group, locals: { :group => group }
   end
 
-  get '/admin/profiles' do
-    users = User.all
-    erb :profiles, locals: {:users => users}
-  end
-
+# +=+=+=+ for PROFILES module +=+=+=+ #
   get '/profiles/create' do
     erb :profile_create, locals: { :user => params['username']}
   end
@@ -172,6 +174,8 @@ end
                         :description => params['description'])
     redirect "/profiles/#{user}"
   end
+
+# +=+=+=+ for UPLOAD module +=+=+=+ #
 
   get '/upload' do 
     @uploads = Upload.all 
