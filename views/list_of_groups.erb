@@ -35,10 +35,8 @@
           <li><a href="/groups/<%= group.url %>"><%= group.group_name %></a></li>
   		    <p><span id="like_<%=group._id%>" class="btn btn-success">LIKE</span>
 
-  		      <form method='POST' action='/groups/<%= group.url%>/delete_group'>
   		        <input type='hidden' name='group_id' value='<%=group._id%>'>
-  		        <button class="btn">Delete</button>
-  		      </form>
+         <a href="#myModal" role="button" data-toggle="modal" data-group-id='<%= group._id%>' data-group-name='<%= group.group_name%>' style="float: right" class="btn btn-danger" id='groupId'>Delete</a>
 
   		    </p>
         <% end %>
@@ -96,3 +94,5 @@ $('#create-button').on('click'), function() {
       $post('/groups', {'add_group'})
     }
 </script>
+
+<script type="text/javascript" src="/js/matts.js"></script>
