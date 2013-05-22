@@ -135,7 +135,7 @@ end
   end
 
   post '/groups/:group_url/delete_confirmed' do  |group_url|
-    group = Group.find(params['group_id'])
+    group = Group.where(group_name: group_url)
       group.delete
       redirect '/groups'
 
