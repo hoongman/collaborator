@@ -1,17 +1,11 @@
 require 'sinatra/base'
-#this inside the sinatra gem
 require 'mongoid'
-#this refers to the mongoid gem
-require 'CarrierWave'
-require 'Sequel'
+require 'CarrierWave/mongoid'
 require_relative 'post'
 require_relative 'group'
 require_relative 'user'
 
 class Collaborator < Sinatra::Base
-  #this class is a controller
-  #this is the app too! - because it is inheriting from Sinatra::Base
-
   set :views, File.join(File.dirname(__FILE__), '../views')
   set :public_folder, File.join(File.dirname(__FILE__), '../public')
   enable :sessions
@@ -48,11 +42,8 @@ end
 before '/admin*' do
   redirect '/' unless admin_user
 end
-  # in the original test we wrote puts "FILTERED"
-  # to see that this was being executed before we
-  # wrote the filter.
-# +=+=+=+ for SIGN UP module +=+=+=+ #
 
+# +=+=+=+ for SIGN UP module +=+=+=+ #
   post '/sign_up' do
     current_salt = salt
     user = User.create!(:username => params['username'],
@@ -63,6 +54,7 @@ end
     session[:user] = user._id
     redirect "/groups"
   end
+
   # +=+=+=+ for LOGIN module +=+=+=+ #
   get '/' do
     erb :login_form
@@ -79,9 +71,8 @@ end
       redirect '/'
     end
   end
-# +=+=+=+ for LOGOUT module +=+=+=+ #
 
-#Logout function - returns nil so that the exception is used from above (returns to root)
+# +=+=+=+ for LOGOUT module +=+=+=+ #
   get '/logout' do
     session[:user] = nil
     redirect '/goodbye'
@@ -90,15 +81,11 @@ end
   get '/goodbye' do
     erb :goodbye
   end
-  # +=+=+=+ for GROUP module +=+=+=+ #
 
+  # +=+=+=+ for GROUP module +=+=+=+ #
   get '/group/create' do
     erb :create_group
   end
-
-# this is coming from the href in list_of_groups.erb
-# find the first item in the group corresponding to the group_url
-#
 
   get '/groups/:group_url' do |group_url|
     group = Group.first(conditions: { :url => group_url})
