@@ -56,7 +56,6 @@ end
                         :password => params['password'],
                         :salt => current_salt,
                         :epassword => encrypt(params['password'],current_salt.to_s))
-                        
     session[:user] = user._id
     redirect "/groups"
   end

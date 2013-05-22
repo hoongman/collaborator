@@ -3,6 +3,8 @@ class User
 
 	field :username, type: String
 	field :password, type: String
+	field :epassword, type: String
+	field :salt, type: String
 
 	field :firstname, type: String
 	field :lastname, type: String
