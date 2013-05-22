@@ -160,11 +160,14 @@ p {
 
 ul {
 	list-style: none;
-	background-color: #fff;
 	padding: 20px 10px;
 }
 
 ul li {
 	margin-bottom: 15px
+}
+
+.ui-widget-header-custom{ 
+    background: #f6a828 url(../images/dialog.png) 50% 50% repeat-x;      
 }
 
