@@ -80,6 +80,12 @@ a {
 	text-decoration: none;
 }
 
+.like-button {
+	background-color: #2ECC71;
+	font-size: 16px;
+	text-transform: lowercase;
+}
+
 .create-account, .login-account {
 	border-radius: 6px;
 }
@@ -167,7 +173,12 @@ ul li {
 	margin-bottom: 15px
 }
 
-.ui-widget-header-custom{ 
-    background: #f6a828 url(../images/dialog.png) 50% 50% repeat-x;      
+
+#create-group-form {
+	display: none;
+}
+
+header {
+	margin-bottom: 10px;
 }
 
