@@ -1,43 +1,42 @@
 <section class="row">
-  <article class="span6 offset3 group-list">
+  <article class="span10 offset1 group-list">
     <header>
-
 <!-- create group START -->
-
-      <span id="create-group-button" class="btn btn-primary">Add another group</span>
-
       <aside id="create-group-form">
-        <h2>Create another group</h2>
-
         <form method="POST" action="/groups">
           <input type="text" name="add_group" placeholder="choose a group name" />
-          <span class="btn btn-primary">Create</span>
+          <!-- span id="create-button" class="btn btn-primary">Create</span -->
         </form>
-
       </aside>
+      <span id="create-group-button" class="btn btn-primary">Create a group</span>
 <!-- create group END -->
-
-      <h2>Your groups</h2>
     </header>
 
+      <h2>Your groups</h2>
+      <ul class="">
+        <% groups.each do |group| %>
+          <li><a href="/groups/<%= group.url %>"><%= group.group_name %></a></li>
+  		    <p><span id="like_<%=group._id%>" class="btn btn-success">LIKE</span>
 
-    <ul class="">
-      <% groups.each do |group| %>
-        <li><a href="/groups/<%= group.url %>"><%= group.group_name %></a></li>
+  		      <form method='POST' action='/groups/<%= group.url%>/delete_group'>
+  		        <input type='hidden' name='group_id' value='<%=group._id%>'>
+  		        <button class="btn">Delete</button>
+  		      </form>
 
-		    <p><span id="like_<%=group._id%>" class="btn btn-success">LIKE</span>
-		      <form method='POST' action='/groups/<%= group.url%>/delete_group'>
-		        <input type='hidden' name='group_id' value='<%=group._id%>'>
-		        <button class="btn">Delete</button>
-		      </form>
-		    </p>
-      <% end %>
-    </ul>
-
-
-    <footer>
-    </footer>
+  		    </p>
+        <% end %>
+      </ul>
   </article>
 </section>
 
+
 <script type="text/javascript" src="/js/matts.js"></script>
+<script type="text/javascript" src="/js/bootstrap.js"></script>
+
+<script>
+
+$('#create-button').on('click'), function() {
+      $post('/groups', {'add_group'})
+    }
+
+</script>
