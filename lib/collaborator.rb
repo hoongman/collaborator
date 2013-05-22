@@ -29,6 +29,16 @@ helpers do
   rescue Exception
     nil
   end
+
+  # generate salt
+  def salt
+    Digest::SHA2.hexdigest(Random.new_seed.to_s)
+  end
+
+  # pass through SHA2
+  def encrypt(password, salt)
+    Digest::SHA2.hexdigest(password + salt)
+  end
 end
 
 before '/group*' do
@@ -44,10 +54,14 @@ end
 # +=+=+=+ for SIGN UP module +=+=+=+ #
 
   post '/sign_up' do
-    user = User.create!(:username => params['username'], :password => params['password'])
+    current_salt = salt
+    user = User.create!(:username => params['username'],
+                        :password => params['password'],
+                        :salt => current_salt,
+                        :epassword => encrypt(params['password'],current_salt.to_s))
+                        
     session[:user] = user._id
-    user = current_user.username
-    redirect "/profiles/#{user}/create"
+    redirect "/groups"
   end
   # +=+=+=+ for LOGIN module +=+=+=+ #
   get '/' do
@@ -56,10 +70,9 @@ end
 
   post '/login' do
     user = User.first({:conditions=>{:username=>params['username']}})
-
     if user.nil?
       redirect '/'
-    elsif user.password == params['password']
+    elsif (encrypt(params['password'],user.salt.to_s)) == (user.epassword.to_s)
       session[:user] = user._id
       redirect '/groups'
     else
