@@ -1,4 +1,4 @@
-/* ==== FOR LIST OF GROUPS ==== */
+/* ==== MATTS FOR LIST OF GROUPS ==== */
 
   function add_group() {
     $('#create-group-form').slideDown();
@@ -10,8 +10,8 @@
 
   function submit_group() {
     $('#create-group-form').slideUp();
-    $('#create-group-button').html("Added Below");
-    $('#create-group-button').unbind('click')
+    $('#create-group-button').html("Add another group?");
+    $('#create-group-button').unbind('click');
     $('#create-group-button').on('click',add_group);
     }
 
@@ -34,3 +34,18 @@
   }
 
   $('[id^=like]').on('click',like);
+
+
+  /* <form method="POST" action="/groups">
+          <input type="text" name="add_group" placeholder="choose a group name" />
+          <span id="create-button" class="btn btn-primary">Create</span>
+        </form>
+
+
+<form method="POST" action="/groups">
+          <input type="text" name="add_group" placeholder="choose a group name" />
+          <span class="btn btn-primary">Create</span>
+        </form> */
+
+
+
