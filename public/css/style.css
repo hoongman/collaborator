@@ -80,6 +80,12 @@ a {
 	text-decoration: none;
 }
 
+.like-button {
+	background-color: #2ECC71;
+	font-size: 16px;
+	text-transform: lowercase;
+}
+
 .create-account, .login-account {
 	border-radius: 6px;
 }
@@ -167,4 +173,16 @@ ul {
 ul li {
 	margin-bottom: 15px
 }
+
+/* ==== GROUP TIMELINE ==== */
+
+#create-group-form {
+	display: none;
+}
+
+header {
+	margin-bottom: 10px;
+}
+
+
 

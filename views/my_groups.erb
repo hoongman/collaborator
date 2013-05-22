@@ -1,0 +1,13 @@
+<section class="row">
+  <div class="span6 offset3 group-list">
+    <h2>Your groups</h2>
+    <ul class="">
+      <% groups.each do |group| %>
+        <li>
+          <a href="/groups/<%= group.url %>"><%= group.group_name %></a>
+        </li>
+      <% end %>
+    </ul>
+    <a class="btn btn-primary" href="/group/create">Add another group</a>
+  </div>
+</section>
