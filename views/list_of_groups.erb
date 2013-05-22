@@ -16,13 +16,12 @@
 
       <ul class="">
         <% groups.each do |group| %>
-          <li>
+  		    <li class="group-holder">
             <a href="/groups/<%= group.url %>"><%= group.group_name %></a>
-          </li>
-  		    <p><span id="like_<%=group._id%>" class="btn btn-success">LIKE</span>
+            <span id="like_<%=group._id%>" class="btn btn-success like">LIKE</span>
             <input type='hidden' name='group_id' value='<%=group._id%>'>
-            <a href="#myModal" role="button" data-toggle="modal" data-group-id='<%= group._id%>' data-group-name='<%= group.group_name%>' style="float: right" class="btn btn-danger" id='groupId'>Delete</a>
-  		    </p>
+            <a href="#myModal" role="button" data-toggle="modal" data-group-id='<%= group._id%>' data-group-name='<%= group.group_name%>' class="btn btn-danger" id='groupId'>Delete</a>
+  		    </li>
         <% end %>
         <a class="btn btn-primary" href="/group/create">Add another group</a>
       </ul>
