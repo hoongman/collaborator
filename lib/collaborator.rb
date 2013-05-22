@@ -114,7 +114,7 @@ end
 
   post '/groups/:group_url/delete_group' do  |group_url|
     group = Group.find(params['group_id'])
-    
+
     if group.posts.empty?
       group.delete
       redirect '/groups'
@@ -127,15 +127,13 @@ end
     group = Group.find(params['group_id'])
       group.delete
       redirect '/groups'
-  
+
   end
 
   get '/groups/:group_url/confirm_delete' do |group_url|
     group = Group.find_or_create_by(group_name: group_url)
    erb :confirm_delete_group, locals: { :group => group }
   end
-
-
 
   # start the server if ruby file executed directly
   run! if app_file == $0

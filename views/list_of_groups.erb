@@ -1,19 +1,42 @@
 <section class="row">
-  <div class="span6 offset3 group-list">
-    <h2>Your groups</h2>
-    <ul class="">
-      <% groups.each do |group| %>
-        <li><a href="/groups/<%= group.url %>"><%= group.group_name %></a></li>
+  <article class="span10 offset1 group-list">
+    <header>
+<!-- create group START -->
+      <aside id="create-group-form">
+        <form method="POST" action="/groups">
+          <input type="text" name="add_group" placeholder="choose a group name" />
+          <!-- span id="create-button" class="btn btn-primary">Create</span -->
+        </form>
+      </aside>
+      <span id="create-group-button" class="btn btn-primary">Create a group</span>
+<!-- create group END -->
+    </header>
 
-		    <p>
-		      <form method='POST' action='/groups/<%= group.url%>/delete_group'>
-		        <input type='hidden' name='group_id' value='<%=group._id%>'>
-		        <button class="btn">Delete</button>
-		      </form>
-		    </p>
+      <h2>Your groups</h2>
+      <ul class="">
+        <% groups.each do |group| %>
+          <li><a href="/groups/<%= group.url %>"><%= group.group_name %></a></li>
+  		    <p><span id="like_<%=group._id%>" class="btn btn-success">LIKE</span>
 
-      <% end %>
-    </ul>
-    <a class="btn btn-primary" href="/group/create">Add another group</a>
-  </div>
+  		      <form method='POST' action='/groups/<%= group.url%>/delete_group'>
+  		        <input type='hidden' name='group_id' value='<%=group._id%>'>
+  		        <button class="btn">Delete</button>
+  		      </form>
+
+  		    </p>
+        <% end %>
+      </ul>
+  </article>
 </section>
+
+
+<script type="text/javascript" src="/js/matts.js"></script>
+<script type="text/javascript" src="/js/bootstrap.js"></script>
+
+<script>
+
+$('#create-button').on('click'), function() {
+      $post('/groups', {'add_group'})
+    }
+
+</script>
