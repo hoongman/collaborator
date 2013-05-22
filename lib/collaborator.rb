@@ -49,7 +49,8 @@ end
   # +=+=+=+ for LOGIN module +=+=+=+ #
 
   get '/' do
-    erb :login_form
+    puts params.inspect
+    erb :login_form # check if the KV pair exists in mongoDB and if so, allow entry
   end
 
   post '/login' do
@@ -105,6 +106,16 @@ end
   get '/groups' do
     erb(:list_of_groups, locals: { :groups => Group.all })
   end
+
+  # +=+=+=+ DELETE GROUP MODULE +=+=+=+ #
+
+  post '/groups/:group_url/delete_group' do
+    groups = Group.where(_id: params['group_id'])
+    groups.delete
+    redirect '/groups'
+  end
+
+  # +=+=+=+ DELETE POST MODULE +=+=+=+ #
 
   post '/groups/:group_url/delete_post' do  |group_url|
     posts = Post.find(params['post_id'])
