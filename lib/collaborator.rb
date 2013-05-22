@@ -59,7 +59,7 @@ end
   # +=+=+=+ for LOGIN module +=+=+=+ #
 
   get '/' do
-    erb :login_form, layout: false 
+    erb :index, layout: false 
   end
 
   post '/login' do
