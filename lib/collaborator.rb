@@ -1,6 +1,7 @@
 require 'sinatra/base'
 #this inside the sinatra gem
 require 'mongoid'
+require 'carrierwave/mongoid'
 #this refers to the mongoid gem
 require_relative 'post'
 require_relative 'group'
@@ -33,6 +34,15 @@ end
   # to see that this was being executed before we
   # wrote the filter.
 
+  get '/upload' do
+    erb :upload
+  end
+
+  post "/upload" do 
+   file = params['upload']
+   File.open(file[:filename], "w") { |f| f.write file[:tempfile].read }
+   "#{file[:filename]} uploaded"
+  end
 
 # +=+=+=+ for SIGN UP module +=+=+=+ #
 
@@ -49,7 +59,7 @@ end
   # +=+=+=+ for LOGIN module +=+=+=+ #
 
   get '/' do
-    erb :index, layout: false 
+    erb :login_form, layout: false 
   end
 
   post '/login' do
@@ -103,7 +113,8 @@ end
   end
 
   get '/groups' do
-    Group.all.to_json
+    erb :list_of_groups , locals: { :groups =>  Group.all}
+    #Group.all.to_json
   end
 
   # +=+=+=+ DELETE GROUP MODULE +=+=+=+ #
