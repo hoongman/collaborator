@@ -1,6 +1,5 @@
 require 'sinatra/base'
 require 'mongoid'
-require 'CarrierWave/mongoid'
 require_relative 'post'
 require_relative 'group'
 require_relative 'user'
@@ -192,9 +191,3 @@ end
   run! if app_file == $0
   # really not sure what this is for (Matt)
 end
-
-class MyUploader < CarrierWave::Uploader::Base
-  storage :file
-end
-
-
