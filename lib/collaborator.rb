@@ -63,15 +63,16 @@ end
   end
 
   post '/login' do
+    content_type :json
     user = User.first({:conditions=>{:username=>params['username']}})
-
+      
     if user.nil?
-      redirect '/'
+      false
     elsif user.password == params['password']
       session[:user] = user._id
-      redirect '/groups'
+      {logged_in: true}.to_json
     else
-      redirect '/'
+      false
     end
   end
 

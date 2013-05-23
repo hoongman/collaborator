@@ -15,15 +15,15 @@
         <a href="/">collaborator.co.uk</a>
       </h1>
       <nav>
-        <% if current_user %>
+        <%=if current_user %>
           <a class='btn btn-warning groups-btn' href="/groups">Groups</a>
           <a class='btn btn-danger logout-btn' href="/logout">Logout</a>
-        <% end %>
+        <%=end %>
       </nav>
     </header>
 
   	<section class="main">
-	    <p><%= yield %></p>
+	    <p><%=yield %></p>
 	  </section>
 
 
